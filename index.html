@@ -15,6 +15,7 @@
         var fixedUrl = window.location.origin + "/pool-quiz-demo/presentation.pdf";
 
         function replaceOwnText(element, from, to) {
+          if (element.textContent.indexOf(to) !== -1) return;
           Array.prototype.forEach.call(element.childNodes, function (node) {
             if (node.nodeType === Node.TEXT_NODE && node.nodeValue.indexOf(from) !== -1) {
               node.nodeValue = node.nodeValue.replace(from, to);
