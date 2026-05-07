@@ -10,6 +10,20 @@
     <title>Расчет бассейна</title>
     <script type="module" crossorigin src="/pool-quiz-demo/assets/index-CRzQ1tFy.js"></script>
     <link rel="stylesheet" crossorigin href="/pool-quiz-demo/assets/index-Xbel3DMW.css">
+    <script>
+      document.addEventListener(
+        "click",
+        function (event) {
+          var link = event.target.closest && event.target.closest("a[href]");
+          if (!link) return;
+          var url = new URL(link.getAttribute("href"), window.location.href);
+          if (url.pathname === "/presentation.pdf") {
+            link.setAttribute("href", "/pool-quiz-demo/presentation.pdf");
+          }
+        },
+        true
+      );
+    </script>
   </head>
   <body>
     <div id="root"></div>
