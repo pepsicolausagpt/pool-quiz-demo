@@ -34,6 +34,7 @@
       (function () {
         var fixedUrl = window.location.origin + "/pool-quiz-demo/presentation.pdf";
         var logoUrl = window.location.origin + "/pool-quiz-demo/images/logo-lab-pools.svg?v=20260507-logo-roomy-safe2";
+        var heroTitle = "Подберем бассейн со всем необходимым из максимально возможного.";
         var priceIncrease = 15000;
         var priceMarker = "bowl-15000";
         var pending = false;
@@ -45,6 +46,13 @@
               node.nodeValue = node.nodeValue.replace(from, to);
             }
           });
+        }
+
+        function patchHeroTitle() {
+          var title = document.getElementById("start-title");
+          if (title && title.textContent.trim() !== heroTitle) {
+            title.textContent = heroTitle;
+          }
         }
 
         function patchLabels() {
@@ -93,6 +101,7 @@
         function patchPage() {
           pending = false;
           patchLinksAndLogo();
+          patchHeroTitle();
           patchLabels();
           patchBowlPrices();
         }
