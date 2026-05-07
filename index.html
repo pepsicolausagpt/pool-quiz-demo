@@ -11,26 +11,24 @@
     <script type="module" crossorigin src="/pool-quiz-demo/assets/index-CRzQ1tFy.js"></script>
     <link rel="stylesheet" crossorigin href="/pool-quiz-demo/assets/index-Xbel3DMW.css">
     <script>
-      document.addEventListener(
-        "click",
-        function (event) {
-          var link = event.target.closest && event.target.closest("a[href]");
-          if (!link) return;
-          var url = new URL(link.getAttribute("href"), window.location.href);
-          if (url.pathname !== "/presentation.pdf") return;
+      (function () {
+        var fixedUrl = window.location.origin + "/pool-quiz-demo/presentation.pdf";
 
-          event.preventDefault();
-          event.stopPropagation();
+        function fixPresentationLinks() {
+          document.querySelectorAll('a[href="/presentation.pdf"]').forEach(function (link) {
+            link.href = fixedUrl;
+          });
+        }
 
-          var fixedUrl = "/pool-quiz-demo/presentation.pdf";
-          if (link.target === "_blank") {
-            window.open(fixedUrl, "_blank", "noopener");
-          } else {
-            window.location.href = fixedUrl;
-          }
-        },
-        true
-      );
+        document.addEventListener("DOMContentLoaded", fixPresentationLinks);
+        window.addEventListener("load", fixPresentationLinks);
+        new MutationObserver(fixPresentationLinks).observe(document.documentElement, {
+          childList: true,
+          subtree: true,
+          attributes: true,
+          attributeFilter: ["href"],
+        });
+      })();
     </script>
   </head>
   <body>
