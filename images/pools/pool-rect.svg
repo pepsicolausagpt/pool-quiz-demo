@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="Прямоугольный бассейн">
+  <rect width="360" height="220" rx="22" fill="#f5eadb"/>
+  <rect x="47" y="48" width="266" height="124" rx="44" fill="#d9bea3"/>
+  <rect x="70" y="64" width="220" height="92" rx="34" fill="#54bdd0"/>
+  <path d="M92 90c51-15 100-15 148 0M101 128c44 17 90 17 138 0" fill="none" stroke="#e9fbff" stroke-width="8" stroke-linecap="round"/>
+</svg>

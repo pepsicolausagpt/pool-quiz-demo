@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="Круглый бассейн">
+  <rect width="360" height="220" rx="22" fill="#f5eadb"/>
+  <circle cx="180" cy="110" r="78" fill="#d9bea3"/>
+  <circle cx="180" cy="110" r="57" fill="#54bdd0"/>
+  <path d="M137 105c30-16 60-16 90 0M144 132c24 12 49 12 75 0" fill="none" stroke="#e9fbff" stroke-width="8" stroke-linecap="round"/>
+</svg>

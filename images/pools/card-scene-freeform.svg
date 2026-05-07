@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" role="img" aria-label="Фигурный бассейн на террасе">
+  <defs>
+    <linearGradient id="water" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0f7ee4"/>
+      <stop offset=".58" stop-color="#08a7ea"/>
+      <stop offset="1" stop-color="#35d1f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="250" fill="#e8dac6"/>
+  <path d="M0 0h640v88H0z" fill="#4d843b"/>
+  <path d="M-52 150 348 35 704 172 254 302z" fill="#b2845a"/>
+  <g opacity=".32" stroke="#704b2e" stroke-width="4">
+    <path d="m-22 160 404-109M24 182 432 64M70 204 478 78M116 226 524 92"/>
+    <path d="m156 82 212 94M210 67l222 100M266 51l228 104M322 38l232 106"/>
+  </g>
+  <g transform="translate(78 18) rotate(-12)">
+    <rect width="88" height="32" rx="7" fill="#f2efe8"/>
+    <rect x="12" y="-20" width="54" height="34" rx="5" fill="#d8c3a9"/>
+  </g>
+  <g transform="translate(154 58) rotate(6)">
+    <path d="M28 68C50 8 122-8 174 22c38 22 65 4 108 19 59 20 82 89 41 128-38 36-96 16-139 5-56-14-86 2-128-18C14 136 12 111 28 68z" fill="#f3eadc"/>
+    <path d="M52 72c17-42 69-54 108-31 33 19 55 4 91 17 43 15 60 63 30 91-29 27-72 10-110 1-46-11-71 1-101-15-28-15-30-35-18-63z" fill="#086bd0"/>
+    <path d="M72 74c13-27 49-35 82-16 30 17 47 4 77 14 31 11 45 42 24 62-23 20-59 6-91-2-37-9-55 1-77-11-20-11-23-27-15-47z" fill="url(#water)"/>
+    <path d="M106 76c58-20 109-13 154 22M102 111c54 23 108 31 162 20" fill="none" stroke="#c9f7ff" stroke-width="11" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="Фигурный бассейн">
+  <rect width="360" height="220" rx="22" fill="#f5eadb"/>
+  <path d="M56 96c18-45 75-61 119-42 39 17 50 2 88 19 43 19 48 86 7 109-39 22-82-1-118-5-48-6-107-26-96-81z" fill="#d9bea3"/>
+  <path d="M82 98c14-30 54-40 86-25 34 15 43 1 76 18 29 15 31 59 1 72-31 13-58-3-91-7-37-5-80-19-72-58z" fill="#54bdd0"/>
+  <path d="M115 102c41-14 78-10 113 11M112 135c38 17 77 22 117 15" fill="none" stroke="#e9fbff" stroke-width="8" stroke-linecap="round"/>
+</svg>
