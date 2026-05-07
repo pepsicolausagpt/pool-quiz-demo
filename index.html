@@ -25,11 +25,13 @@
           });
         }
 
-        function raiseVisiblePrices() {
+        function raiseVisibleBowlPrices() {
           document.querySelectorAll(".price-line").forEach(function (element) {
             if (element.dataset.priceRaised === priceIncreaseMarker) return;
 
             var text = element.textContent;
+            if (text.indexOf("Чаша") === -1) return;
+
             var match = text.match(/(\d[\d\s]*)\s*руб\./);
             if (!match) return;
 
@@ -57,7 +59,7 @@
             );
           });
 
-          raiseVisiblePrices();
+          raiseVisibleBowlPrices();
         }
 
         document.addEventListener("DOMContentLoaded", fixPageLinksAndLabels);
