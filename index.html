@@ -13,6 +13,7 @@
     <script>
       (function () {
         var fixedUrl = window.location.origin + "/pool-quiz-demo/presentation.pdf";
+        var logoUrl = window.location.origin + "/pool-quiz-demo/images/logo-lab-pools.svg?v=20260507-logo";
         var priceIncrease = 15000;
         var priceIncreaseMarker = String(priceIncrease);
 
@@ -44,6 +45,12 @@
           });
         }
 
+        function fixLogo() {
+          document.querySelectorAll('.brand-mark img[src$="logo-lab-pools.svg"]').forEach(function (logo) {
+            logo.src = logoUrl;
+          });
+        }
+
         function fixPageLinksAndLabels() {
           document.querySelectorAll('a[href="/presentation.pdf"]').forEach(function (link) {
             link.href = fixedUrl;
@@ -59,6 +66,7 @@
             );
           });
 
+          fixLogo();
           raiseVisibleBowlPrices();
         }
 
@@ -68,7 +76,7 @@
           childList: true,
           subtree: true,
           attributes: true,
-          attributeFilter: ["href"],
+          attributeFilter: ["href", "src"],
         });
       })();
     </script>
