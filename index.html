@@ -33,7 +33,7 @@
     <script>
       (function () {
         var fixedUrl = window.location.origin + "/pool-quiz-demo/presentation.pdf";
-        var logoUrl = window.location.origin + "/pool-quiz-demo/images/logo-lab-pools.svg?v=20260507-logo-roomy";
+        var logoUrl = window.location.origin + "/pool-quiz-demo/images/logo-lab-pools.svg?v=20260507-logo-roomy-fix";
         var priceIncrease = 15000;
         var priceIncreaseMarker = String(priceIncrease);
 
@@ -67,7 +67,7 @@
 
         function fixLogo() {
           document.querySelectorAll('.brand-mark img').forEach(function (logo) {
-            if (logo.src.indexOf('logo-lab-pools.svg') !== -1) {
+            if (logo.src.indexOf('logo-lab-pools.svg') !== -1 && logo.src !== logoUrl) {
               logo.src = logoUrl;
             }
           });
@@ -98,7 +98,7 @@
           childList: true,
           subtree: true,
           attributes: true,
-          attributeFilter: ["href", "src"],
+          attributeFilter: ["href"]
         });
       })();
     </script>
