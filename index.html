@@ -17,8 +17,16 @@
           var link = event.target.closest && event.target.closest("a[href]");
           if (!link) return;
           var url = new URL(link.getAttribute("href"), window.location.href);
-          if (url.pathname === "/presentation.pdf") {
-            link.setAttribute("href", "/pool-quiz-demo/presentation.pdf");
+          if (url.pathname !== "/presentation.pdf") return;
+
+          event.preventDefault();
+          event.stopPropagation();
+
+          var fixedUrl = "/pool-quiz-demo/presentation.pdf";
+          if (link.target === "_blank") {
+            window.open(fixedUrl, "_blank", "noopener");
+          } else {
+            window.location.href = fixedUrl;
           }
         },
         true
