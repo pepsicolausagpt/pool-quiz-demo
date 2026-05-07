@@ -1,25 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 100" role="img" aria-labelledby="logoTitle">
-  <title id="logoTitle">ЛАБОРАТОРИЯ БАССЕЙНОВ</title>
-  <rect width="260" height="100" fill="none"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 419" role="img" aria-labelledby="logoTitle">
+  <title id="logoTitle">Лаборатория бассейнов</title>
+  <rect width="1090" height="419" fill="#000000"/>
   <text
-    x="130"
-    y="38"
-    fill="#163c5a"
-    font-family="'Arial Black', Arial, Helvetica, sans-serif"
-    font-size="27"
+    x="545"
+    y="151"
+    fill="#173f5f"
+    font-family="Impact, 'Arial Black', Arial, Helvetica, sans-serif"
+    font-size="204"
     font-weight="900"
     text-anchor="middle"
-    letter-spacing=".4"
+    textLength="1090"
+    lengthAdjust="spacingAndGlyphs"
   >ЛАБОРАТОРИЯ</text>
-  <rect x="30" y="49" width="200" height="3" rx="1.5" fill="#07a9c1"/>
+  <rect x="0" y="169" width="1090" height="17" fill="#09aee0"/>
   <text
-    x="130"
-    y="84"
-    fill="#163c5a"
-    font-family="'Arial Black', Arial, Helvetica, sans-serif"
-    font-size="31"
+    x="545"
+    y="385"
+    fill="#173f5f"
+    font-family="Impact, 'Arial Black', Arial, Helvetica, sans-serif"
+    font-size="206"
     font-weight="900"
     text-anchor="middle"
-    letter-spacing=".6"
+    textLength="890"
+    lengthAdjust="spacingAndGlyphs"
   >БАССЕЙНОВ</text>
 </svg>
