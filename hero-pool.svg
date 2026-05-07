@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680" role="img" aria-label="Бассейн на участке">
+  <rect width="900" height="680" rx="48" fill="#f6efe3"/>
+  <path d="M56 504c122-76 266-117 430-122 142-4 262 20 358 73v118H56z" fill="#d7dfd5"/>
+  <path d="M94 194c154-84 305-112 451-84 99 19 188 62 267 130l-90 292c-143 32-279 28-407-13-98-31-184-82-259-152z" fill="#f1d7bf"/>
+  <path d="M177 228c124-54 242-71 354-50 80 15 151 49 213 101l-65 194c-111 20-216 14-315-19-76-25-143-64-200-117z" fill="#1d7f94"/>
+  <path d="M207 244c106-42 205-54 297-36 65 13 122 40 171 81l-49 142c-88 13-171 6-250-21-62-21-115-52-161-94z" fill="#74d0df"/>
+  <path d="M256 270c74-23 143-27 207-13 49 11 91 31 127 60" fill="none" stroke="#e9fbff" stroke-width="10" stroke-linecap="round"/>
+  <path d="M223 325c77 48 160 78 250 88" fill="none" stroke="#d9f7ff" stroke-width="8" stroke-linecap="round" opacity=".8"/>
+  <circle cx="719" cy="156" r="52" fill="#e46d4f"/>
+  <path d="M706 156h26M719 143v26" stroke="#fff8ef" stroke-width="8" stroke-linecap="round"/>
+</svg>
