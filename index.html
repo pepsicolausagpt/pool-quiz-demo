@@ -28,9 +28,14 @@
             link.href = fixedUrl;
           });
 
-          document.querySelectorAll("button, a").forEach(function (element) {
+          document.querySelectorAll("button, a, span").forEach(function (element) {
             replaceOwnText(element, "Начать расчет", "Начать расчет бассейна");
             replaceOwnText(element, "Открыть презентацию", "Открыть презентацию павильонов");
+            replaceOwnText(
+              element,
+              "Индивидуальный расчет / бассейн более 7 метров",
+              "Индивидуальный расчет бассейна из полимерных панелей более 7 метров"
+            );
           });
         }
 
