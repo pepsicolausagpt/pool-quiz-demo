@@ -14,15 +14,28 @@
       (function () {
         var fixedUrl = window.location.origin + "/pool-quiz-demo/presentation.pdf";
 
-        function fixPresentationLinks() {
-          document.querySelectorAll('a[href="/presentation.pdf"]').forEach(function (link) {
-            link.href = fixedUrl;
+        function replaceOwnText(element, from, to) {
+          Array.prototype.forEach.call(element.childNodes, function (node) {
+            if (node.nodeType === Node.TEXT_NODE && node.nodeValue.indexOf(from) !== -1) {
+              node.nodeValue = node.nodeValue.replace(from, to);
+            }
           });
         }
 
-        document.addEventListener("DOMContentLoaded", fixPresentationLinks);
-        window.addEventListener("load", fixPresentationLinks);
-        new MutationObserver(fixPresentationLinks).observe(document.documentElement, {
+        function fixPageLinksAndLabels() {
+          document.querySelectorAll('a[href="/presentation.pdf"]').forEach(function (link) {
+            link.href = fixedUrl;
+          });
+
+          document.querySelectorAll("button, a").forEach(function (element) {
+            replaceOwnText(element, "Начать расчет", "Начать расчет бассейна");
+            replaceOwnText(element, "Открыть презентацию", "Открыть презентацию павильонов");
+          });
+        }
+
+        document.addEventListener("DOMContentLoaded", fixPageLinksAndLabels);
+        window.addEventListener("load", fixPageLinksAndLabels);
+        new MutationObserver(fixPageLinksAndLabels).observe(document.documentElement, {
           childList: true,
           subtree: true,
           attributes: true,
