@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 260" role="img" aria-label="Модель фигурного бассейна">
+  <rect width="420" height="260" rx="18" fill="#fbf7ef"/>
+  <path d="M70 118c20-59 88-78 142-54 48 21 61-3 107 18 54 25 59 105 7 132-49 26-98-2-142-8-61-8-128-32-114-88z" fill="#d6b793"/>
+  <path d="M100 120c16-39 64-51 104-32 40 19 52-1 89 19 35 19 37 70 1 87-36 16-70-5-108-10-46-7-95-25-86-64z" fill="#48b8cc"/>
+  <path d="M137 120c47-18 94-14 139 12M136 157c43 18 89 23 137 13" fill="none" stroke="#e9fbff" stroke-width="9" stroke-linecap="round"/>
+</svg>
