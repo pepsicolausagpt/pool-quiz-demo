@@ -145,6 +145,9 @@ h3 {
     linear-gradient(90deg, rgba(251, 248, 242, 0.34) 0%, rgba(251, 248, 242, 0.27) 24%, rgba(251, 248, 242, 0.11) 50%, rgba(251, 248, 242, 0.02) 100%),
     linear-gradient(180deg, rgba(251, 248, 242, 0) 0%, rgba(251, 248, 242, 0.02) 54%, rgba(251, 248, 242, 0.31) 100%),
     url("../public/images/home-hero-pool.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .start-screen__photo::after,
