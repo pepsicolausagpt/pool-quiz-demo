@@ -135,6 +135,7 @@ h3 {
     linear-gradient(180deg, rgba(251, 248, 242, 0) 0%, rgba(251, 248, 242, 0.02) 54%, rgba(251, 248, 242, 0.31) 100%),
     url("../public/images/fon-new.jpg");
   background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
 }
 
@@ -467,6 +468,7 @@ h3 {
     linear-gradient(180deg, rgba(244, 239, 231, 0.88), rgba(251, 248, 242, 0.98)),
     url("../public/images/fon-new.jpg");
   background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
   filter: blur(10px) saturate(0.75);
   transform: scale(1.03);
@@ -1245,6 +1247,7 @@ h3 {
     linear-gradient(90deg, rgba(251, 248, 242, 0.98), rgba(251, 248, 242, 0.62)),
     url("../public/images/fon-new.jpg");
   background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
   content: "";
 }
@@ -1328,6 +1331,7 @@ h3 {
       linear-gradient(90deg, rgba(251, 248, 242, 0.34), rgba(251, 248, 242, 0.14) 70%, rgba(251, 248, 242, 0.04)),
       url("../public/images/home-hero-pool.jpg");
     background-position: center top;
+    background-repeat: no-repeat;
     background-size: cover;
   }
 
