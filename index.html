@@ -85,6 +85,15 @@
           });
         }
 
+        function patchCustomPoolThumbnail() {
+          document.querySelectorAll('img[src*="pool-custom.svg"]').forEach(function (image) {
+            var freshUrl = window.location.origin + "/pool-quiz-demo/images/pools/pool-custom.svg?v=20260508-custom-pool";
+            if (image.src !== freshUrl) {
+              image.src = freshUrl;
+            }
+          });
+        }
+
         function patchBowlPrices() {
           document.querySelectorAll(".price-line").forEach(function (element) {
             if (element.dataset.pricePatch === priceMarker) return;
@@ -109,6 +118,7 @@
           patchLinksAndLogo();
           patchHeroTitle();
           patchLabels();
+          patchCustomPoolThumbnail();
           patchBowlPrices();
         }
 
