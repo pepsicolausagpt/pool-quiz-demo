@@ -5,7 +5,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
 
   return {
-    base: env.VITE_PUBLIC_BASE || "/",
+    base: env.VITE_PUBLIC_BASE || "/pool-quiz-demo/",
     plugins: [react()],
     server: {
       proxy: {
