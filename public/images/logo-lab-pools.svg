@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24 -42 1138 510" role="img" aria-labelledby="logoTitle">
+  <title id="logoTitle">Лаборатория бассейнов</title>
+  <text
+    x="545"
+    y="151"
+    fill="#173f5f"
+    font-family="Impact, 'Arial Black', Arial, Helvetica, sans-serif"
+    font-size="204"
+    font-weight="900"
+    text-anchor="middle"
+    textLength="1090"
+    lengthAdjust="spacingAndGlyphs"
+  >ЛАБОРАТОРИЯ</text>
+  <rect x="0" y="169" width="1090" height="17" fill="#09aee0"/>
+  <text
+    x="545"
+    y="385"
+    fill="#173f5f"
+    font-family="Impact, 'Arial Black', Arial, Helvetica, sans-serif"
+    font-size="206"
+    font-weight="900"
+    text-anchor="middle"
+    textLength="890"
+    lengthAdjust="spacingAndGlyphs"
+  >БАССЕЙНОВ</text>
+</svg>
