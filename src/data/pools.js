@@ -6,7 +6,7 @@ const demoModel = (id, name, image, length, width, volume, poolPrice, borderSton
   width,
   depth: "1.5 м",
   volume,
-  poolPrice,
+  poolPrice: poolPrice + 15000,
   borderStonePrice,
   ...extras,
 });
