@@ -144,7 +144,7 @@ h3 {
     linear-gradient(180deg, rgba(10, 18, 31, 0.08) 0%, rgba(10, 18, 31, 0.03) 54%, rgba(10, 18, 31, 0) 100%),
     linear-gradient(90deg, rgba(251, 248, 242, 0.34) 0%, rgba(251, 248, 242, 0.27) 24%, rgba(251, 248, 242, 0.11) 50%, rgba(251, 248, 242, 0.02) 100%),
     linear-gradient(180deg, rgba(251, 248, 242, 0) 0%, rgba(251, 248, 242, 0.02) 54%, rgba(251, 248, 242, 0.31) 100%),
-    url("../public/images/home-hero-pool.jpg");
+    url("../public/images/home-hero-pool.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1332,7 +1332,7 @@ h3 {
     background:
       linear-gradient(180deg, rgba(10, 18, 31, 0.04), rgba(10, 18, 31, 0.01) 42%, rgba(251, 248, 242, 0.33) 100%),
       linear-gradient(90deg, rgba(251, 248, 242, 0.34), rgba(251, 248, 242, 0.14) 70%, rgba(251, 248, 242, 0.04)),
-      url("../public/images/home-hero-pool.jpg");
+      url("../public/images/home-hero-pool.png");
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
