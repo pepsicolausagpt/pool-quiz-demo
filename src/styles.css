@@ -133,9 +133,17 @@ h3 {
     linear-gradient(180deg, rgba(10, 18, 31, 0.08) 0%, rgba(10, 18, 31, 0.03) 54%, rgba(10, 18, 31, 0) 100%),
     linear-gradient(90deg, rgba(251, 248, 242, 0.34) 0%, rgba(251, 248, 242, 0.27) 24%, rgba(251, 248, 242, 0.11) 50%, rgba(251, 248, 242, 0.02) 100%),
     linear-gradient(180deg, rgba(251, 248, 242, 0) 0%, rgba(251, 248, 242, 0.02) 54%, rgba(251, 248, 242, 0.31) 100%),
-    url("/images/fon.png");
+    url("../public/images/fon-new.jpg");
   background-position: center;
   background-size: cover;
+}
+
+.start-screen__photo {
+  background:
+    linear-gradient(180deg, rgba(10, 18, 31, 0.08) 0%, rgba(10, 18, 31, 0.03) 54%, rgba(10, 18, 31, 0) 100%),
+    linear-gradient(90deg, rgba(251, 248, 242, 0.34) 0%, rgba(251, 248, 242, 0.27) 24%, rgba(251, 248, 242, 0.11) 50%, rgba(251, 248, 242, 0.02) 100%),
+    linear-gradient(180deg, rgba(251, 248, 242, 0) 0%, rgba(251, 248, 242, 0.02) 54%, rgba(251, 248, 242, 0.31) 100%),
+    url("../public/images/home-hero-pool.jpg");
 }
 
 .start-screen__photo::after,
@@ -165,16 +173,15 @@ h3 {
 .brand-mark {
   display: inline-flex;
   align-items: center;
-  padding: 9px 13px 8px;
-  border: 1px solid rgba(14, 26, 47, 0.08);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.64);
-  box-shadow: 0 12px 32px rgba(20, 28, 42, 0.07);
-  backdrop-filter: blur(12px);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 .brand-mark img {
-  width: clamp(118px, 9vw, 150px);
+  width: clamp(210px, 18vw, 320px);
   height: auto;
 }
 
@@ -458,7 +465,7 @@ h3 {
 .quiz-shell__photo {
   background:
     linear-gradient(180deg, rgba(244, 239, 231, 0.88), rgba(251, 248, 242, 0.98)),
-    url("/images/fon.png");
+    url("../public/images/fon-new.jpg");
   background-position: center;
   background-size: cover;
   filter: blur(10px) saturate(0.75);
@@ -1236,7 +1243,7 @@ h3 {
   z-index: -1;
   background:
     linear-gradient(90deg, rgba(251, 248, 242, 0.98), rgba(251, 248, 242, 0.62)),
-    url("/images/fon.png");
+    url("../public/images/fon-new.jpg");
   background-position: center;
   background-size: cover;
   content: "";
@@ -1319,7 +1326,7 @@ h3 {
     background:
       linear-gradient(180deg, rgba(10, 18, 31, 0.04), rgba(10, 18, 31, 0.01) 42%, rgba(251, 248, 242, 0.33) 100%),
       linear-gradient(90deg, rgba(251, 248, 242, 0.34), rgba(251, 248, 242, 0.14) 70%, rgba(251, 248, 242, 0.04)),
-      url("/images/fon.png");
+      url("../public/images/home-hero-pool.jpg");
     background-position: center top;
     background-size: cover;
   }
@@ -1329,11 +1336,11 @@ h3 {
   }
 
   .brand-mark {
-    padding: 8px 10px 7px;
+    padding: 0;
   }
 
   .brand-mark img {
-    width: 116px;
+    width: 190px;
   }
 
   .top-phone {
