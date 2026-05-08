@@ -4,7 +4,7 @@ import {
   TELEGRAM_BOT_TOKEN,
   TELEGRAM_CHAT_ID,
 } from "../config/constants";
-import { formatLeadEmail } from "./formatLeadEmail";
+import { formatLeadEmail, formatTelegramMessage } from "./formatLeadEmail";
 
 const TELEGRAM_API_URL = "https://api.telegram.org";
 const TELEGRAM_LIMIT = 4096;
@@ -28,8 +28,8 @@ const splitTelegramMessage = (message) => {
   return chunks;
 };
 
-async function submitTelegramLead({ subject, message }) {
-  const chunks = splitTelegramMessage(`${subject}\n\n${message}`);
+async function submitTelegramLead({ message }) {
+  const chunks = splitTelegramMessage(message);
 
   for (const chunk of chunks) {
     const response = await fetch(`${TELEGRAM_API_URL}/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
@@ -41,6 +41,7 @@ async function submitTelegramLead({ subject, message }) {
       body: JSON.stringify({
         chat_id: TELEGRAM_CHAT_ID,
         text: chunk,
+        parse_mode: "HTML",
         disable_web_page_preview: true,
       }),
     });
@@ -61,13 +62,14 @@ export async function submitLead(leadData) {
     phone: leadData.contact.phone,
     city: leadData.contact.deliveryCity,
     message: emailBody,
+    telegramMessage: formatTelegramMessage(leadData),
     leadData,
   };
 
-  if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
+  if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID && !LEAD_ENDPOINT) {
+    const tgMessage = formatTelegramMessage(leadData);
     await submitTelegramLead({
-      subject: EMAIL_SETTINGS_PLACEHOLDER.subject,
-      message: emailBody,
+      message: tgMessage,
     });
 
     return {

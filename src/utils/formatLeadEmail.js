@@ -1,32 +1,115 @@
+import { optionLabels } from "../data/quizOptions";
+import { pools } from "../data/pools";
+
 const formatValue = (value) => {
   if (Array.isArray(value)) {
-    return value.length ? value.join(", ") : "Не выбрано";
+    return value.length ? value.map((item) => optionLabels[item] || item).join(", ") : "Не выбрано";
   }
 
   if (value === null || value === undefined || value === "") {
     return "Не указано";
   }
 
-  return String(value);
+  return optionLabels[value] || String(value);
 };
 
-const formatDate = (isoDate) => {
-  if (!isoDate) {
-    return "Не указано";
-  }
+const formatPrice = (value) =>
+  value || value === 0 ? `${Number(value).toLocaleString("ru-RU")} руб.` : "Не указано";
 
-  return new Intl.DateTimeFormat("ru-RU", {
+const formatDate = (isoDate) =>
+  new Intl.DateTimeFormat("ru-RU", {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(new Date(isoDate));
+
+const formatModelSize = (model) => {
+  if (!model) {
+    return formatValue(null);
+  }
+
+  const base = model.diameter
+    ? `Диаметр: ${formatValue(model.diameter)}, глубина: ${formatValue(model.depth)}`
+    : `${formatValue(model.length)} x ${formatValue(model.width)} x ${formatValue(model.depth)}`;
+
+  return model.extraSpec ? `${base}, ${model.extraSpec.label}: ${model.extraSpec.value}` : base;
 };
 
-export function formatLeadEmail(leadData) {
-  const contact = leadData.contact || {};
-  const selectedModel = leadData.selectedModel || {};
-  const customPool = leadData.customPool || {};
+const escapeHtml = (unsafe) => {
+  if (typeof unsafe !== "string") return unsafe;
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+};
 
-  return [
+export function formatTelegramMessage(leadData) {
+  const contact = leadData.contact;
+  const formatDateLocal = (isoDate) =>
+    new Intl.DateTimeFormat("ru-RU", {
+      dateStyle: "medium",
+      timeStyle: "short",
+    }).format(new Date(isoDate));
+
+  const formatPriceLocal = (value) =>
+    value || value === 0 ? `${Number(value).toLocaleString("ru-RU")} руб.` : "Не указано";
+
+  const rows = [
+    "<b>🚀 Новая заявка на расчет бассейна</b>",
+    "",
+    "<b>👤 Клиент:</b>",
+    `Имя: ${escapeHtml(formatValue(contact.fullName))}`,
+    `📍 Город: ${escapeHtml(formatValue(contact.deliveryCity))}`,
+    `📞 Тел: <code>${escapeHtml(formatValue(contact.phone))}</code>`,
+    `📧 Email: ${escapeHtml(formatValue(contact.email))}`,
+    "",
+    "<b>🏊 Параметры бассейна:</b>",
+  ];
+
+  if (leadData.branch === "custom_large_pool") {
+    rows.push(
+      "<i>Тип: Индивидуальный / более 7м</i>",
+      `Ширина: ${formatValue(leadData.customPool.width)} м`,
+      `Длина: ${formatValue(leadData.customPool.length)} м`,
+      `Глубина: ${formatValue(leadData.customPool.depth)} м`,
+      `Пленка: ${escapeHtml(formatValue(leadData.customPool.linerType))}`,
+    );
+  } else {
+    rows.push(
+      `<i>Тип: Готовая модель (${escapeHtml(pools[leadData.poolType]?.title || leadData.poolType)})</i>`,
+      `Модель: <b>${escapeHtml(formatValue(leadData.selectedModel?.name))}</b>`,
+      `Габариты: ${escapeHtml(formatModelSize(leadData.selectedModel))}`,
+      `Цена чаши: ${formatPriceLocal(leadData.selectedModel?.poolPrice)}`,
+    );
+  }
+
+  rows.push(
+    "",
+    "<b>⚙️ Оборудование и опции:</b>",
+    `Локация: ${escapeHtml(formatValue(leadData.location))}`,
+    `Решение: ${escapeHtml(formatValue(leadData.equipmentSolution))}`,
+    `Элементы: ${escapeHtml(formatValue(leadData.equipmentItems))}`,
+    `Дезинфекция: ${escapeHtml(formatValue(leadData.waterDisinfection))}`,
+    `Противоток: ${escapeHtml(formatValue(leadData.counterflow))}`,
+    `Нагрев: ${escapeHtml(formatValue(leadData.waterHeating))}`,
+    "",
+    "<b>💰 Сроки и бюджет:</b>",
+    `Срок: ${escapeHtml(formatValue(leadData.implementationTime))}`,
+    `Бюджет: <b>${escapeHtml(formatValue(leadData.budgetLimit))}</b>`,
+    `Схема: ${escapeHtml(formatValue(leadData.implementationScheme))}`,
+    `Комментарий: <i>${escapeHtml(formatValue(leadData.comment))}</i>`,
+    "",
+    `📅 Дата: ${formatDateLocal(leadData.createdAt)}`,
+    `🔗 Источник: ${escapeHtml(leadData.source)}`,
+  );
+
+  return rows.join("\n");
+}
+
+export function formatLeadEmail(leadData) {
+  const contact = leadData.contact;
+  const base = [
     "Новая заявка на расчет бассейна",
     "",
     "Контакты клиента:",
@@ -36,33 +119,66 @@ export function formatLeadEmail(leadData) {
     `Email: ${formatValue(contact.email)}`,
     "",
     "Параметры бассейна:",
-    `Тип расчета: ${leadData.branch === "custom_large_pool" ? "Индивидуальный бассейн" : "Готовая модель"}`,
-    `Вид бассейна: ${formatValue(leadData.poolType)}`,
-    `Модель: ${formatValue(selectedModel.name)}`,
-    `Размеры модели: ${formatValue(selectedModel.length || selectedModel.diameter)} x ${formatValue(selectedModel.width)} x ${formatValue(selectedModel.depth)}`,
-    `Ширина индивидуального бассейна: ${formatValue(customPool.width)}`,
-    `Длина индивидуального бассейна: ${formatValue(customPool.length)}`,
-    `Глубина индивидуального бассейна: ${formatValue(customPool.depth)}`,
-    `Тип пленки: ${formatValue(customPool.linerType)}`,
+  ];
+
+  const poolBlock =
+    leadData.branch === "custom_large_pool"
+      ? [
+          "Тип расчета: Индивидуальный бассейн / более 7 метров",
+          `Ширина: ${formatValue(leadData.customPool.width)} м`,
+          `Длина: ${formatValue(leadData.customPool.length)} м`,
+          `Глубина: ${formatValue(leadData.customPool.depth)} м`,
+          `Тип пленки: ${formatValue(leadData.customPool.linerType)}`,
+        ]
+      : [
+          "Тип расчета: Готовая модель",
+          `Вид бассейна: ${pools[leadData.poolType]?.title || leadData.poolType}`,
+          `Модель: ${formatValue(leadData.selectedModel?.name)}`,
+          `Габариты: ${formatModelSize(leadData.selectedModel)}`,
+          `Объем: ${formatValue(leadData.selectedModel?.volume)}`,
+          `Цена чаши: ${formatPrice(leadData.selectedModel?.poolPrice)}`,
+          `Бордюрный камень: ${formatPrice(leadData.selectedModel?.borderStonePrice)}`,
+        ];
+
+  const budgetBlock =
+    leadData.branch === "custom_large_pool"
+      ? [
+          "Сроки и бюджет:",
+          `Срок реализации: ${formatValue(leadData.implementationTime)}`,
+          `Оценка бюджета: ${formatValue(leadData.budgetLevel)}`,
+          `Бюджет без общестроительных работ: ${formatValue(leadData.budgetLimit)}`,
+          `Комментарий: ${formatValue(leadData.comment)}`,
+        ]
+      : [
+          "Сроки и бюджет:",
+          `Срок реализации: ${formatValue(leadData.implementationTime)}`,
+          `Оценка бюджета: ${formatValue(leadData.budgetLevel)}`,
+          `Схема реализации: ${formatValue(leadData.implementationScheme)}`,
+          `Бюджет: ${formatValue(leadData.budgetLimit)}`,
+          `Комментарий: ${formatValue(leadData.comment)}`,
+        ];
+
+  return [
+    ...base,
+    ...poolBlock,
     "",
-    "Местоположение и оборудование:",
-    `Расположение: ${formatValue(leadData.location)}`,
+    "Местоположение:",
+    `Где будет расположен бассейн: ${formatValue(leadData.location)}`,
+    "",
+    "Оборудование:",
     `Решение по оборудованию: ${formatValue(leadData.equipmentSolution)}`,
-    `Оборудование: ${formatValue(leadData.equipmentItems)}`,
+    `Элементы оборудования: ${formatValue(leadData.equipmentItems)}`,
     `Обеззараживание воды: ${formatValue(leadData.waterDisinfection)}`,
     `Противоток: ${formatValue(leadData.counterflow)}`,
     `Нагрев воды: ${formatValue(leadData.waterHeating)}`,
+    "",
+    "Дополнительно:",
     `Дополнительные товары: ${formatValue(leadData.additionalItems)}`,
     `Акция: ${formatValue(leadData.promotion)}`,
     "",
-    "Сроки и бюджет:",
-    `Срок реализации: ${formatValue(leadData.implementationTime)}`,
-    `Оценка бюджета: ${formatValue(leadData.budgetLevel)}`,
-    `Схема реализации: ${formatValue(leadData.implementationScheme)}`,
-    `Бюджет: ${formatValue(leadData.budgetLimit)}`,
-    `Комментарий: ${formatValue(leadData.comment)}`,
+    ...budgetBlock,
     "",
-    `Источник: ${formatValue(leadData.source)}`,
+    `Источник: ${leadData.source}`,
     `Дата заявки: ${formatDate(leadData.createdAt)}`,
   ].join("\n");
 }
