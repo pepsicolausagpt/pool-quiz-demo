@@ -66,7 +66,7 @@ export async function submitLead(leadData) {
     leadData,
   };
 
-  if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
+  if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID && !LEAD_ENDPOINT) {
     const tgMessage = formatTelegramMessage(leadData);
     await submitTelegramLead({
       message: tgMessage,
@@ -105,7 +105,7 @@ export async function submitLead(leadData) {
   });
 
   if (!response.ok) {
-    throw new Error("РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РїСЂР°РІРёС‚СЊ Р·Р°СЏРІРєСѓ. РџРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р· РёР»Рё СЃРІСЏР¶РёС‚РµСЃСЊ РїРѕ С‚РµР»РµС„РѕРЅСѓ.");
+    throw new Error("Не удалось отправить заявку. Попробуйте еще раз или свяжитесь по телефону.");
   }
 
   return {
