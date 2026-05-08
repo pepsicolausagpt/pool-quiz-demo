@@ -26,6 +26,7 @@ const poolImages = {
   gaudi: `${base}images/pools/series-gaudi.png`,
   monet: `${base}images/pools/series-monet.png`,
   giotto: `${base}images/pools/series-giotto.png`,
+  custom: `${base}images/pools/series-custom.png`,
 };
 
 const modelImages = {
@@ -281,7 +282,7 @@ export const poolTypes = [
     id: "custom_large_pool",
     title: "Индивидуальный расчет / бассейн более 7 метров",
     description: "Для бассейнов более 7 метров и нестандартных проектов",
-    image: `${base}images/pools/pool-custom.svg`,
+    image: poolImages.custom,
     isCustom: true,
   },
 ];
