@@ -37,22 +37,23 @@ async function submitTelegramLead({ message }) {
   for (const proxyBase of proxies) {
     try {
       const baseUrl = proxyBase.endsWith("/") ? proxyBase.slice(0, -1) : proxyBase;
-      const url = `${baseUrl}/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+      const botUrl = `${baseUrl}/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
       for (const chunk of chunks) {
-        // Use URLSearchParams to create a "Simple Request" (application/x-www-form-urlencoded)
-        // This avoids the CORS OPTIONS preflight request which often fails on mobile Safari.
         const params = new URLSearchParams();
         params.append("chat_id", TELEGRAM_CHAT_ID);
         params.append("text", chunk);
         params.append("parse_mode", "HTML");
         params.append("disable_web_page_preview", "true");
+        // Add cache buster
+        params.append("_t", Date.now().toString());
+
+        const url = `${botUrl}?${params.toString()}`;
 
         const response = await fetch(url, {
-          method: "POST",
+          method: "GET",
           mode: "cors",
           credentials: "omit",
-          body: params,
         });
 
         if (!response.ok) {
