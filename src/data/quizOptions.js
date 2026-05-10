@@ -3,17 +3,7 @@ export const locationOptions = [
   { value: "indoor", label: "В помещении" },
 ];
 
-export const equipmentSolutionOptions = [
-  {
-    value: "tech_compartment_outdoor",
-    label: "Конфигурация данного оборудования мне необходима внутри технологического отсека (бассейн на улице)",
-  },
-  {
-    value: "tech_stand_indoor",
-    label: "Конфигурация данного оборудования мне необходима на технологическом стенде (бассейн в помещении)",
-  },
-  { value: "equipment_only", label: "Мне необходимо только оборудование" },
-];
+
 
 export const equipmentItemOptions = [
   { value: "sand_filter", label: "Песочная фильтровальная установка" },
@@ -102,7 +92,7 @@ export const linerTypeOptions = [
 export const optionLabels = Object.fromEntries(
   [
     ...locationOptions,
-    ...equipmentSolutionOptions,
+
     ...equipmentItemOptions,
     ...waterDisinfectionOptions,
     ...counterflowOptions,
