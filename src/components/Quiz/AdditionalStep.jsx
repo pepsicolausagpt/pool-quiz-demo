@@ -1,4 +1,4 @@
-import { additionalItemOptions, promotionOptions } from "../../data/quizOptions";
+import { additionalItemOptions } from "../../data/quizOptions";
 
 export default function AdditionalStep({ formData, onFieldChange }) {
   const toggleAdditional = (value) => {
@@ -32,23 +32,6 @@ export default function AdditionalStep({ formData, onFieldChange }) {
             ))}
           </div>
         </div>
-        <div className="choice-section">
-          <div className="choice-section__header">
-            <h3>При расчете стоимости предложения учесть акцию</h3>
-          </div>
-          <div className="choice-list choice-list--inline">
-            {promotionOptions.map((option) => (
-              <button
-                key={option.value}
-                className={`choice ${formData.promotion === option.value ? "is-selected" : ""}`}
-                type="button"
-                onClick={() => onFieldChange("promotion", option.value)}
-              >
-                <span className="choice__label">{option.label}</span>
-              </button>
-            ))}
-          </div>
-          <p className="hint">Что входит в акции, специалист уточнит при подготовке расчета.</p>
         </div>
       </div>
     </section>
