@@ -281,6 +281,44 @@ h3 {
   margin-top: 26px;
 }
 
+.start-screen__info {
+  margin-top: 30px;
+  padding: 16px 20px;
+  border: 1px solid rgba(7, 155, 179, 0.12);
+  border-left: 4px solid var(--aqua);
+  border-radius: 4px 12px 12px 4px;
+  background: rgba(255, 255, 255, 0.4);
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  backdrop-filter: blur(8px);
+}
+
+.start-screen__info p {
+  margin-bottom: 10px;
+}
+
+.start-screen__info p:last-child {
+  margin-bottom: 0;
+}
+
+.start-screen__info a {
+  color: var(--aqua-dark);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(7, 155, 179, 0.3);
+  transition: all 0.2s ease;
+  overflow-wrap: anywhere;
+}
+
+
+.start-screen__info a:hover {
+  color: var(--aqua);
+  border-bottom-color: var(--aqua);
+  background: rgba(7, 155, 179, 0.05);
+}
+
+
 .button {
   display: inline-flex;
   justify-content: center;
