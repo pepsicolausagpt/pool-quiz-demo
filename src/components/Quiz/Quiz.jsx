@@ -23,7 +23,7 @@ const createInitialFormData = () => ({
   poolDepth: "",
   linerType: "",
   location: "",
-  equipmentSolution: "",
+
   equipmentItems: [],
   waterDisinfection: [],
   counterflow: "no",
@@ -86,18 +86,7 @@ export default function Quiz() {
     setFormData((previous) => {
       const next = { ...previous, [field]: value };
 
-      if (field === "location") {
-        const defaultOutdoor = "tech_compartment_outdoor";
-        const defaultIndoor = "tech_stand_indoor";
-        const canReplaceDefault =
-          !previous.equipmentSolution ||
-          previous.equipmentSolution === defaultOutdoor ||
-          previous.equipmentSolution === defaultIndoor;
 
-        if (canReplaceDefault) {
-          next.equipmentSolution = value === "outdoor" ? defaultOutdoor : defaultIndoor;
-        }
-      }
 
       return next;
     });
