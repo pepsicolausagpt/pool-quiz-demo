@@ -4,9 +4,8 @@ import { isStepValid, validateStep } from "../../utils/validation";
 import { submitLead } from "../../utils/submitLead";
 import AdditionalStep from "./AdditionalStep";
 import BudgetStepCatalog from "./BudgetStepCatalog";
-import BudgetStepCustom from "./BudgetStepCustom";
 import ContactStep from "./ContactStep";
-import CustomSizeStep from "./CustomSizeStep";
+
 import EquipmentStep from "./EquipmentStep";
 import LocationStep from "./LocationStep";
 import ModelStep from "./ModelStep";
@@ -42,8 +41,7 @@ const createInitialFormData = () => ({
   email: "",
 });
 
-const catalogSteps = ["poolType", "model", "location", "equipment", "additional", "budgetCatalog", "contact"];
-const customSteps = ["poolType", "customSize", "location", "equipment", "additional", "budgetCustom", "contact"];
+const steps = ["poolType", "model", "location", "equipment", "additional", "budgetCatalog", "contact"];
 
 export default function Quiz() {
   const [screen, setScreen] = useState("start");
@@ -53,10 +51,7 @@ export default function Quiz() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
-  const steps = useMemo(
-    () => (formData.branch === "custom_large_pool" ? customSteps : catalogSteps),
-    [formData.branch],
-  );
+
   const currentStep = steps[currentStepIndex] || steps[0];
   const errors = showErrors ? validateStep(currentStep, formData) : {};
   const canGoNext = isStepValid(currentStep, formData);
@@ -110,38 +105,12 @@ export default function Quiz() {
   };
 
   const handlePoolTypeChange = (poolType) => {
-    setFormData((previous) => {
-      const isCustom = poolType.id === "custom_large_pool";
-
-      return {
-        ...previous,
-        branch: isCustom ? "custom_large_pool" : "catalog",
-        poolType: poolType.id,
-        selectedModel: null,
-        poolWidth: isCustom ? previous.poolWidth : "",
-        poolLength: isCustom ? previous.poolLength : "",
-        poolDepth: isCustom ? previous.poolDepth : "",
-        linerType: isCustom ? previous.linerType : "",
-        implementationScheme: isCustom ? "" : previous.implementationScheme,
-        budgetLimit: "",
-      };
-    });
-    setShowErrors(false);
-  };
-
-  const backToCatalogTypes = () => {
     setFormData((previous) => ({
       ...previous,
-      branch: "catalog",
-      poolType: null,
+      poolType: poolType.id,
       selectedModel: null,
-      poolWidth: "",
-      poolLength: "",
-      poolDepth: "",
-      linerType: "",
       budgetLimit: "",
     }));
-    setCurrentStepIndex(0);
     setShowErrors(false);
   };
 
@@ -196,16 +165,7 @@ export default function Quiz() {
       );
     }
 
-    if (currentStep === "customSize") {
-      return (
-        <CustomSizeStep
-          formData={formData}
-          onFieldChange={updateField}
-          errors={errors}
-          onBackToCatalog={backToCatalogTypes}
-        />
-      );
-    }
+
 
     if (currentStep === "location") {
       return <LocationStep formData={formData} onFieldChange={updateField} error={errors.location} />;
@@ -223,9 +183,7 @@ export default function Quiz() {
       return <BudgetStepCatalog formData={formData} onFieldChange={updateField} errors={errors} />;
     }
 
-    if (currentStep === "budgetCustom") {
-      return <BudgetStepCustom formData={formData} onFieldChange={updateField} errors={errors} />;
-    }
+
 
     return <ContactStep formData={formData} onFieldChange={updateField} errors={errors} />;
   };
