@@ -53,7 +53,6 @@ export default function ModelStep({ formData, onFieldChange, error }) {
               </div>
             </dl>
             <span className="price-line">Чаша: {formatPrice(model.poolPrice)}</span>
-            <span className="price-line">Бордюрный камень: {formatPrice(model.borderStonePrice)}</span>
           </OptionCard>
         ))}
       </div>
