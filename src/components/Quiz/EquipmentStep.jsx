@@ -1,7 +1,6 @@
 import {
   counterflowOptions,
   equipmentItemOptions,
-  equipmentSolutionOptions,
   waterDisinfectionOptions,
   waterHeatingOptions,
 } from "../../data/quizOptions";
@@ -69,13 +68,7 @@ export default function EquipmentStep({ formData, onFieldChange }) {
         <h2>Оборудование</h2>
       </div>
       <div className="equipment-sections">
-        <ToggleSection
-          title="Выберите решение по оборудованию, которое Вас устроит"
-          options={equipmentSolutionOptions}
-          value={formData.equipmentSolution}
-          type="radio"
-          onChange={(value) => onFieldChange("equipmentSolution", value)}
-        />
+
         <ToggleSection
           title="Выберите необходимые элементы оборудования"
           options={equipmentItemOptions}
