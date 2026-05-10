@@ -135,7 +135,6 @@ export function formatLeadEmail(leadData) {
           `Габариты: ${formatModelSize(leadData.selectedModel)}`,
           `Объем: ${formatValue(leadData.selectedModel?.volume)}`,
           `Цена чаши: ${formatPrice(leadData.selectedModel?.poolPrice)}`,
-          `Бордюрный камень: ${formatPrice(leadData.selectedModel?.borderStonePrice)}`,
         ];
 
   const budgetBlock =
