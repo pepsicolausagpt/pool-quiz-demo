@@ -1,4 +1,4 @@
-const TELEGRAM_API_URL = process.env.TELEGRAM_API_URL || "https://api.telegram.org";
+const TELEGRAM_API_URL = process.env.TELEGRAM_API_URL || "https://tgproxy.site";
 const TELEGRAM_LIMIT = 4096;
 
 const splitMessage = (message) => {
