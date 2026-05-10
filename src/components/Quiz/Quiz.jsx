@@ -29,7 +29,6 @@ const createInitialFormData = () => ({
   counterflow: "no",
   waterHeating: "no",
   additionalItems: [],
-  promotion: "no",
   implementationTime: "",
   budgetLevel: "",
   implementationScheme: "",
