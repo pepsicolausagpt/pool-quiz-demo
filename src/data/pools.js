@@ -24,7 +24,7 @@ const poolImages = {
   gaudi: `${base}images/pools/series-gaudi.png`,
   monet: `${base}images/pools/series-monet.png`,
   giotto: `${base}images/pools/series-giotto.png`,
-  custom: `${base}images/pools/series-custom.png`,
+
 };
 
 const modelImages = {
@@ -274,13 +274,9 @@ export const pools = {
   },
 };
 
-export const poolTypes = [
-  ...Object.values(pools).map(({ id, title, description, image }) => ({ id, title, description, image })),
-  {
-    id: "custom_large_pool",
-    title: "Индивидуальный расчет / бассейн более 7 метров",
-    description: "Для бассейнов более 7 метров и нестандартных проектов",
-    image: poolImages.custom,
-    isCustom: true,
-  },
-];
+export const poolTypes = Object.values(pools).map(({ id, title, description, image }) => ({
+  id,
+  title,
+  description,
+  image,
+}));
