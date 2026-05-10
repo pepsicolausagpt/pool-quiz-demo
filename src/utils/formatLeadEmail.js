@@ -67,21 +67,12 @@ export function formatTelegramMessage(leadData) {
     "<b>🏊 Параметры бассейна:</b>",
   ];
 
-  if (leadData.branch === "custom_large_pool") {
-    rows.push(
-      "<i>Тип: Индивидуальный / более 7м</i>",
-      `Ширина: ${formatValue(leadData.customPool.width)} м`,
-      `Длина: ${formatValue(leadData.customPool.length)} м`,
-      `Пленка: ${escapeHtml(formatValue(leadData.customPool.linerType))}`,
-    );
-  } else {
-    rows.push(
-      `<i>Тип: Готовая модель (${escapeHtml(pools[leadData.poolType]?.title || leadData.poolType)})</i>`,
-      `Модель: <b>${escapeHtml(formatValue(leadData.selectedModel?.name))}</b>`,
-      `Габариты: ${escapeHtml(formatModelSize(leadData.selectedModel))}`,
-      `Цена чаши: ${formatPriceLocal(leadData.selectedModel?.poolPrice)}`,
-    );
-  }
+  rows.push(
+    `<i>Тип: Готовая модель (${escapeHtml(pools[leadData.poolType]?.title || leadData.poolType)})</i>`,
+    `Модель: <b>${escapeHtml(formatValue(leadData.selectedModel?.name))}</b>`,
+    `Габариты: ${escapeHtml(formatModelSize(leadData.selectedModel))}`,
+    `Цена чаши: ${formatPriceLocal(leadData.selectedModel?.poolPrice)}`,
+  );
 
   rows.push(
     "",
@@ -120,40 +111,23 @@ export function formatLeadEmail(leadData) {
     "Параметры бассейна:",
   ];
 
-  const poolBlock =
-    leadData.branch === "custom_large_pool"
-      ? [
-          "Тип расчета: Индивидуальный бассейн / более 7 метров",
-          `Ширина: ${formatValue(leadData.customPool.width)} м`,
-          `Длина: ${formatValue(leadData.customPool.length)} м`,
-          `Тип пленки: ${formatValue(leadData.customPool.linerType)}`,
-        ]
-      : [
-          "Тип расчета: Готовая модель",
-          `Вид бассейна: ${pools[leadData.poolType]?.title || leadData.poolType}`,
-          `Модель: ${formatValue(leadData.selectedModel?.name)}`,
-          `Габариты: ${formatModelSize(leadData.selectedModel)}`,
-          `Объем: ${formatValue(leadData.selectedModel?.volume)}`,
-          `Цена чаши: ${formatPrice(leadData.selectedModel?.poolPrice)}`,
-        ];
+  const poolBlock = [
+    "Тип расчета: Готовая модель",
+    `Вид бассейна: ${pools[leadData.poolType]?.title || leadData.poolType}`,
+    `Модель: ${formatValue(leadData.selectedModel?.name)}`,
+    `Габариты: ${formatModelSize(leadData.selectedModel)}`,
+    `Объем: ${formatValue(leadData.selectedModel?.volume)}`,
+    `Цена чаши: ${formatPrice(leadData.selectedModel?.poolPrice)}`,
+  ];
 
-  const budgetBlock =
-    leadData.branch === "custom_large_pool"
-      ? [
-          "Сроки и бюджет:",
-          `Срок реализации: ${formatValue(leadData.implementationTime)}`,
-          `Оценка бюджета: ${formatValue(leadData.budgetLevel)}`,
-          `Бюджет без общестроительных работ: ${formatValue(leadData.budgetLimit)}`,
-          `Комментарий: ${formatValue(leadData.comment)}`,
-        ]
-      : [
-          "Сроки и бюджет:",
-          `Срок реализации: ${formatValue(leadData.implementationTime)}`,
-          `Оценка бюджета: ${formatValue(leadData.budgetLevel)}`,
-          `Схема реализации: ${formatValue(leadData.implementationScheme)}`,
-          `Бюджет: ${formatValue(leadData.budgetLimit)}`,
-          `Комментарий: ${formatValue(leadData.comment)}`,
-        ];
+  const budgetBlock = [
+    "Сроки и бюджет:",
+    `Срок реализации: ${formatValue(leadData.implementationTime)}`,
+    `Оценка бюджета: ${formatValue(leadData.budgetLevel)}`,
+    `Схема реализации: ${formatValue(leadData.implementationScheme)}`,
+    `Бюджет: ${formatValue(leadData.budgetLimit)}`,
+    `Комментарий: ${formatValue(leadData.comment)}`,
+  ];
 
   return [
     ...base,
