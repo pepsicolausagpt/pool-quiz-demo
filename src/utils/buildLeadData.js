@@ -12,7 +12,7 @@ export function buildLeadData(formData) {
   return {
     source: LEAD_SOURCE,
     location: formData.location,
-    equipmentSolution: formData.equipmentSolution,
+
     equipmentItems: formData.equipmentItems,
     waterDisinfection: formData.waterDisinfection,
     counterflow: formData.counterflow,
