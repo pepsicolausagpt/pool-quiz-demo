@@ -28,6 +28,23 @@ const splitTelegramMessage = (message) => {
   return chunks;
 };
 
+async function fetchWithTimeout(url, options = {}, timeout = 6000) {
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+
+  try {
+    const response = await fetch(url, {
+      ...options,
+      signal: controller.signal,
+    });
+    clearTimeout(id);
+    return response;
+  } catch (error) {
+    clearTimeout(id);
+    throw error;
+  }
+}
+
 async function submitTelegramLead({ message }) {
   const chunks = splitTelegramMessage(message);
   
@@ -54,7 +71,7 @@ async function submitTelegramLead({ message }) {
         params.append("text", chunk);
         params.append("parse_mode", "HTML");
         params.append("disable_web_page_preview", "true");
-        params.append("_v", "v4"); // Version tag
+        params.append("_v", "v4");
 
         let url;
         if (strategy.method === "WRAP") {
@@ -64,14 +81,12 @@ async function submitTelegramLead({ message }) {
           url = `${baseUrl}/${botPart}?${params.toString()}`;
         }
 
-        const response = await fetch(url, {
+        const response = await fetchWithTimeout(url, {
           method: "GET",
           mode: strategy.mode,
           credentials: "omit",
-        });
+        }, 6000); // 6 second timeout per chunk
 
-        // In no-cors mode, response.ok is always false and we can't read the body.
-        // We just assume it worked if it didn't throw a network error.
         if (strategy.mode !== "no-cors" && !response.ok) {
           const errorBody = await response.text().catch(() => "Unknown error");
           throw new Error(`[v4] Proxy ${strategy.base} failed (${response.status}): ${errorBody}`);
@@ -80,8 +95,9 @@ async function submitTelegramLead({ message }) {
       
       return;
     } catch (error) {
-      console.warn(`[v4] Strategy ${strategy.base} failed:`, error.message);
-      lastError = error;
+      const errorMsg = error.name === "AbortError" ? "Request timed out" : error.message;
+      console.warn(`[v4] Strategy ${strategy.base} failed:`, errorMsg);
+      lastError = new Error(`[v4] Strategy ${strategy.base} failed: ${errorMsg}`);
     }
   }
 
