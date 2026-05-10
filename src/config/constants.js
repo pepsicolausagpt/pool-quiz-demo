@@ -1,4 +1,4 @@
-export const VERSION = "v4-neutral";
+export const VERSION = "v5-robust";
 export const PRESENTATION_URL = `${import.meta.env.BASE_URL}presentation.pdf`;
 
 export const LEAD_SOURCE = "Авито / квиз";
