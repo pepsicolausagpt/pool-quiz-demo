@@ -41,10 +41,6 @@ export default function ModelStep({ formData, onFieldChange, error }) {
                   </div>
                 </>
               )}
-              <div>
-                <dt>Глубина</dt>
-                <dd>{model.depth}</dd>
-              </div>
               {model.extraSpec ? (
                 <div>
                   <dt>{model.extraSpec.label}</dt>
