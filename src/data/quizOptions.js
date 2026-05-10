@@ -59,11 +59,7 @@ export const implementationTimeOptions = [
   { value: "researching", label: "Изучаю рынок" },
 ];
 
-export const budgetLevelOptions = [
-  { value: "economy", label: "Эконом" },
-  { value: "standard", label: "Стандарт" },
-  { value: "premium", label: "Премиум" },
-];
+
 
 export const implementationSchemeOptions = [
   {
@@ -81,10 +77,10 @@ export const implementationSchemeOptions = [
 ];
 
 export const catalogBudgetLimitOptions = [
-  { value: "up_to_300k", label: "До 300 000 рублей" },
-  { value: "up_to_600k", label: "До 600 000 рублей" },
-  { value: "up_to_1m", label: "До 1 000 000 рублей" },
-  { value: "over_1m", label: "Более 1 000 000 рублей" },
+  { value: "up_to_350k", label: "Эконом (до 350 000 рублей)", level: "economy" },
+  { value: "up_to_600k", label: "Стандарт (до 600 000 рублей)", level: "standard" },
+  { value: "up_to_1m", label: "Премиум (до 1 000 000 рублей)", level: "premium" },
+  { value: "over_1m", label: "Более 1 000 000 рублей", level: "premium" },
 ];
 
 export const customBudgetLimitOptions = [
@@ -113,7 +109,6 @@ export const optionLabels = Object.fromEntries(
     ...waterHeatingOptions,
     ...additionalItemOptions,
     ...implementationTimeOptions,
-    ...budgetLevelOptions,
     ...implementationSchemeOptions,
     ...catalogBudgetLimitOptions,
     ...customBudgetLimitOptions,
