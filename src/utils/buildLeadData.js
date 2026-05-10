@@ -52,7 +52,6 @@ export function buildLeadData(formData) {
           extraSpec: formData.selectedModel.extraSpec,
           volume: formData.selectedModel.volume,
           poolPrice: formData.selectedModel.poolPrice,
-          borderStonePrice: formData.selectedModel.borderStonePrice,
         }
       : null,
     implementationScheme: formData.implementationScheme,
