@@ -116,7 +116,7 @@ export function formatLeadEmail(leadData) {
     `Вид бассейна: ${pools[leadData.poolType]?.title || leadData.poolType}`,
     `Модель: ${formatValue(leadData.selectedModel?.name)}`,
     `Габариты: ${formatModelSize(leadData.selectedModel)}`,
-    `Объем: ${formatValue(leadData.selectedModel?.volume)}`,
+
     `Цена чаши: ${formatPrice(leadData.selectedModel?.poolPrice)}`,
   ];
 
