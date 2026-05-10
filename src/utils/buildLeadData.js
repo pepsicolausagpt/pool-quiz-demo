@@ -9,7 +9,7 @@ export function buildLeadData(formData) {
     email: formData.email?.trim() || "",
   };
 
-  const common = {
+  return {
     source: LEAD_SOURCE,
     location: formData.location,
     equipmentSolution: formData.equipmentSolution,
@@ -25,22 +25,6 @@ export function buildLeadData(formData) {
     comment: formData.comment?.trim() || "",
     contact,
     createdAt,
-  };
-
-  if (formData.branch === "custom_large_pool") {
-    return {
-      ...common,
-      branch: "custom_large_pool",
-      customPool: {
-        width: formData.poolWidth,
-        length: formData.poolLength,
-        linerType: formData.linerType,
-      },
-    };
-  }
-
-  return {
-    ...common,
     branch: "catalog",
     poolType: formData.poolType,
     selectedModel: formData.selectedModel
