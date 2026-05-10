@@ -1560,10 +1560,12 @@ h3 {
   h1 { font-size: clamp(1.75rem, 8.5vw, 2.6rem) !important; line-height: 1.05 !important; margin-bottom: 14px; }
   .start-screen__content { padding: 20px 16px 24px; transform: none; }
   .start-screen__content::before { inset: 0; border-radius: 14px; backdrop-filter: blur(10px) saturate(1.1); }
-  .button { width: 100%; }
+  .button { width: 100%; min-height: 48px; padding: 10px 20px; font-size: 0.96rem; }
   .quiz-panel__top { grid-template-columns: 1fr; }
   .icon-button { position: absolute; top: 108px; right: 30px; }
   .progress { padding-right: 56px; }
+  .quiz-actions { gap: 10px; margin-top: 14px; padding-top: 8px; }
+  .secure-note { margin-top: 4px; font-size: 0.84rem; }
 }
 
 @media (max-width: 480px) {
