@@ -34,7 +34,7 @@ export function buildLeadData(formData) {
           length: formData.selectedModel.length,
           width: formData.selectedModel.width,
           extraSpec: formData.selectedModel.extraSpec,
-          volume: formData.selectedModel.volume,
+
           poolPrice: formData.selectedModel.poolPrice,
         }
       : null,
