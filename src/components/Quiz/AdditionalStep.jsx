@@ -32,7 +32,6 @@ export default function AdditionalStep({ formData, onFieldChange }) {
             ))}
           </div>
         </div>
-        </div>
       </div>
     </section>
   );
