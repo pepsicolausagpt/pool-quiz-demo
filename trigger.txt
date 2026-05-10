@@ -1,2 +1,2 @@
-Deployment trigger: 2026-05-10T16:05:00Z
-Cleanup and sync.
+Deployment trigger: 2026-05-10T17:03:00Z
+Added consultation info block.
