@@ -45,11 +45,15 @@ export default function BudgetStepCatalog({ formData, onFieldChange, errors }) {
           error={errors.implementationTime}
         />
         <RadioGroup
-          title="Ваша оценка бюджетности планируемого бассейна"
-          options={budgetLevelOptions}
-          value={formData.budgetLevel}
-          onChange={(value) => onFieldChange("budgetLevel", value)}
-          error={errors.budgetLevel}
+          title="Ваша оценка бюджетности и планируемый бюджет"
+          options={catalogBudgetLimitOptions}
+          value={formData.budgetLimit}
+          onChange={(value) => {
+            const option = catalogBudgetLimitOptions.find((opt) => opt.value === value);
+            onFieldChange("budgetLevel", option?.level || "");
+            onFieldChange("budgetLimit", value);
+          }}
+          error={errors.budgetLimit}
         />
         <RadioGroup
           title="Планируемая схема реализации возведения"
@@ -57,13 +61,6 @@ export default function BudgetStepCatalog({ formData, onFieldChange, errors }) {
           value={formData.implementationScheme}
           onChange={(value) => onFieldChange("implementationScheme", value)}
           error={errors.implementationScheme}
-        />
-        <RadioGroup
-          title="Какой бюджет вы рассматриваете?"
-          options={catalogBudgetLimitOptions}
-          value={formData.budgetLimit}
-          onChange={(value) => onFieldChange("budgetLimit", value)}
-          error={errors.budgetLimit}
         />
         <label className="field planning-comment">
           <span>Комментарий</span>
