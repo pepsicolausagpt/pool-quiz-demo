@@ -52,11 +52,6 @@ export const additionalItemOptions = [
   { value: "auto_dosing_chemistry_set", label: "Набор химии для автоматической станции дозирования" },
 ];
 
-export const promotionOptions = [
-  { value: "no", label: "Нет" },
-  { value: "four_of_six", label: "4 из 6" },
-  { value: "three_of_five", label: "3 из 5" },
-];
 
 export const implementationTimeOptions = [
   { value: "this_year", label: "В этом году" },
@@ -117,7 +112,6 @@ export const optionLabels = Object.fromEntries(
     ...counterflowOptions,
     ...waterHeatingOptions,
     ...additionalItemOptions,
-    ...promotionOptions,
     ...implementationTimeOptions,
     ...budgetLevelOptions,
     ...implementationSchemeOptions,
