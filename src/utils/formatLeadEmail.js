@@ -78,7 +78,7 @@ export function formatTelegramMessage(leadData) {
     "",
     "<b>⚙️ Оборудование и опции:</b>",
     `Локация: ${escapeHtml(formatValue(leadData.location))}`,
-    `Решение: ${escapeHtml(formatValue(leadData.equipmentSolution))}`,
+
     `Элементы: ${escapeHtml(formatValue(leadData.equipmentItems))}`,
     `Дезинфекция: ${escapeHtml(formatValue(leadData.waterDisinfection))}`,
     `Противоток: ${escapeHtml(formatValue(leadData.counterflow))}`,
@@ -137,7 +137,7 @@ export function formatLeadEmail(leadData) {
     `Где будет расположен бассейн: ${formatValue(leadData.location)}`,
     "",
     "Оборудование:",
-    `Решение по оборудованию: ${formatValue(leadData.equipmentSolution)}`,
+
     `Элементы оборудования: ${formatValue(leadData.equipmentItems)}`,
     `Обеззараживание воды: ${formatValue(leadData.waterDisinfection)}`,
     `Противоток: ${formatValue(leadData.counterflow)}`,
