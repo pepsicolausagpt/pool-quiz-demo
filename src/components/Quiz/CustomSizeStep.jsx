@@ -1,6 +1,4 @@
-import {
   linerTypeOptions,
-  poolDepthOptions,
   poolLengthOptions,
   poolWidthOptions,
 } from "../../data/quizOptions";
@@ -48,13 +46,6 @@ export default function CustomSizeStep({ formData, onFieldChange, errors, onBack
               options={poolLengthOptions}
               onChange={(value) => onFieldChange("poolLength", value)}
               error={errors.poolLength}
-            />
-            <SelectField
-              label="Глубина бассейна, м"
-              value={formData.poolDepth}
-              options={poolDepthOptions}
-              onChange={(value) => onFieldChange("poolDepth", value)}
-              error={errors.poolDepth}
             />
           </div>
         </div>
