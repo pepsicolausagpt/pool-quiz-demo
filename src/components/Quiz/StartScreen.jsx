@@ -1,4 +1,4 @@
-import { PRESENTATION_URL } from "../../config/constants";
+
 
 const logoSrc = `${import.meta.env.BASE_URL}images/logo-lab-pools.svg`;
 
@@ -26,10 +26,6 @@ export default function StartScreen({ onStart }) {
             Начать расчет бассейна
             <span aria-hidden="true">→</span>
           </button>
-          <a className="button button--ghost" href={PRESENTATION_URL} target="_blank" rel="noreferrer">
-            <span className="button__icon" aria-hidden="true" />
-            Открыть презентацию павильонов
-          </a>
         </div>
         <div className="start-benefits" aria-label="Преимущества расчета">
           <div>
