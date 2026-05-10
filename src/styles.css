@@ -282,20 +282,16 @@ h3 {
 }
 
 .start-screen__info {
-  margin-top: 30px;
-  padding: 16px 20px;
-  border: 1px solid rgba(7, 155, 179, 0.12);
-  border-left: 4px solid var(--aqua);
-  border-radius: 4px 12px 12px 4px;
-  background: rgba(255, 255, 255, 0.4);
-  color: var(--ink-soft);
-  font-size: 0.9rem;
-  line-height: 1.6;
-  backdrop-filter: blur(8px);
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(14, 26, 47, 0.08);
+  color: rgba(38, 49, 73, 0.65);
+  font-size: 0.84rem;
+  line-height: 1.5;
 }
 
 .start-screen__info p {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .start-screen__info p:last-child {
@@ -303,19 +299,17 @@ h3 {
 }
 
 .start-screen__info a {
-  color: var(--aqua-dark);
+  color: var(--ink-soft);
   font-weight: 700;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(7, 155, 179, 0.3);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
   transition: all 0.2s ease;
-  overflow-wrap: anywhere;
 }
 
-
 .start-screen__info a:hover {
-  color: var(--aqua);
-  border-bottom-color: var(--aqua);
-  background: rgba(7, 155, 179, 0.05);
+  color: var(--aqua-dark);
+  text-decoration-color: var(--aqua);
 }
 
 
