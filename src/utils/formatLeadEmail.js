@@ -145,7 +145,6 @@ export function formatLeadEmail(leadData) {
     "",
     "Дополнительно:",
     `Дополнительные товары: ${formatValue(leadData.additionalItems)}`,
-    `Акция: ${formatValue(leadData.promotion)}`,
     "",
     ...budgetBlock,
     "",
