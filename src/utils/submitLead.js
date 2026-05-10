@@ -47,7 +47,8 @@ async function submitTelegramLead({ message }) {
     });
 
     if (!response.ok) {
-      throw new Error("Telegram lead delivery failed");
+      const errorBody = await response.text().catch(() => "Unknown error");
+      throw new Error(`Telegram lead delivery failed (${response.status}): ${errorBody}`);
     }
   }
 }
