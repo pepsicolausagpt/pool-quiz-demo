@@ -18,7 +18,6 @@ export function buildLeadData(formData) {
     counterflow: formData.counterflow,
     waterHeating: formData.waterHeating,
     additionalItems: formData.additionalItems,
-    promotion: formData.promotion,
     implementationTime: formData.implementationTime,
     budgetLevel: formData.budgetLevel,
     budgetLimit: formData.budgetLimit,
