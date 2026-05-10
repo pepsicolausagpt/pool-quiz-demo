@@ -3,7 +3,7 @@ import {
   LEAD_ENDPOINT,
   TELEGRAM_BOT_TOKEN,
   TELEGRAM_CHAT_ID,
-  TELEGRAM_API_URL,
+  TELEGRAM_PROXIES,
 } from "../config/constants";
 import { formatLeadEmail, formatTelegramMessage } from "./formatLeadEmail";
 
@@ -30,27 +30,46 @@ const splitTelegramMessage = (message) => {
 
 async function submitTelegramLead({ message }) {
   const chunks = splitTelegramMessage(message);
+  const proxies = TELEGRAM_PROXIES.length > 0 ? TELEGRAM_PROXIES : ["https://api.telegram.org"];
+  
+  let lastError = null;
 
-  for (const chunk of chunks) {
-    const response = await fetch(`${TELEGRAM_API_URL}/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        chat_id: TELEGRAM_CHAT_ID,
-        text: chunk,
-        parse_mode: "HTML",
-        disable_web_page_preview: true,
-      }),
-    });
+  for (const proxyBase of proxies) {
+    try {
+      const baseUrl = proxyBase.endsWith("/") ? proxyBase.slice(0, -1) : proxyBase;
+      const url = `${baseUrl}/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
-    if (!response.ok) {
-      const errorBody = await response.text().catch(() => "Unknown error");
-      throw new Error(`Telegram lead delivery failed (${response.status}): ${errorBody}`);
+      for (const chunk of chunks) {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: chunk,
+            parse_mode: "HTML",
+            disable_web_page_preview: true,
+          }),
+        });
+
+        if (!response.ok) {
+          const errorBody = await response.text().catch(() => "Unknown error");
+          throw new Error(`Telegram proxy ${proxyBase} returned ${response.status}: ${errorBody}`);
+        }
+      }
+      
+      // If we got here, all chunks were sent successfully via this proxy
+      return;
+    } catch (error) {
+      console.warn(`Telegram delivery failed via ${proxyBase}:`, error.message);
+      lastError = error;
+      // Continue to the next proxy in the list
     }
   }
+
+  // If we exhausted all proxies, throw the last error
+  throw lastError || new Error("All Telegram proxies failed");
 }
 
 export async function submitLead(leadData) {
