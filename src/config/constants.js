@@ -13,6 +13,7 @@ export const TELEGRAM_PROXIES = [
   "https://api.telegram-proxy.org",
   "https://tgproxy.site",
   "https://tg.i-c-a.su",
+  "https://telegg.xyz",
 ].filter(Boolean);
 
 export const EMAIL_SETTINGS_PLACEHOLDER = {
