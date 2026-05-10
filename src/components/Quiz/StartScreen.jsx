@@ -27,18 +27,6 @@ export default function StartScreen({ onStart }) {
             <span aria-hidden="true">→</span>
           </button>
         </div>
-        <div className="start-screen__info">
-          <p>
-            Индивидуальную консультацию по будущему расчету можно получить по телефону{' '}
-            <a href="tel:88003508770">8 800 350 8770</a> у менеджера.
-          </p>
-          <p>
-            Весь материал по данному товару на странице сайта: <br />
-            <a href="https://полипропиленовые.лабораториябассейнов.рф" target="_blank" rel="noreferrer">
-              https://полипропиленовые.лабораториябассейнов.рф
-            </a>
-          </p>
-        </div>
         <div className="start-benefits" aria-label="Преимущества расчета">
           <div>
             <span className="benefit-icon benefit-icon--time" aria-hidden="true" />
@@ -52,6 +40,18 @@ export default function StartScreen({ onStart }) {
             <span className="benefit-icon benefit-icon--catalog" aria-hidden="true" />
             <p>Готовые серии и индивидуальные решения</p>
           </div>
+        </div>
+        <div className="start-screen__info">
+          <p>
+            Индивидуальную консультацию по будущему расчету можно получить по телефону{' '}
+            <a href="tel:88003508770">8 800 350 8770</a> у менеджера.
+          </p>
+          <p>
+            Весь материал по данному товару на странице сайта:{' '}
+            <a href="https://полипропиленовые.лабораториябассейнов.рф" target="_blank" rel="noreferrer">
+              полипропиленовые.лабораториябассейнов.рф
+            </a>
+          </p>
         </div>
       </section>
     </main>
