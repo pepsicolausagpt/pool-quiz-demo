@@ -34,7 +34,6 @@ export function buildLeadData(formData) {
       customPool: {
         width: formData.poolWidth,
         length: formData.poolLength,
-        depth: formData.poolDepth,
         linerType: formData.linerType,
       },
     };
@@ -44,7 +43,18 @@ export function buildLeadData(formData) {
     ...common,
     branch: "catalog",
     poolType: formData.poolType,
-    selectedModel: formData.selectedModel || null,
+    selectedModel: formData.selectedModel
+      ? {
+          name: formData.selectedModel.name,
+          diameter: formData.selectedModel.diameter,
+          length: formData.selectedModel.length,
+          width: formData.selectedModel.width,
+          extraSpec: formData.selectedModel.extraSpec,
+          volume: formData.selectedModel.volume,
+          poolPrice: formData.selectedModel.poolPrice,
+          borderStonePrice: formData.selectedModel.borderStonePrice,
+        }
+      : null,
     implementationScheme: formData.implementationScheme,
   };
 }
