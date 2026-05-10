@@ -3,10 +3,10 @@ import {
   LEAD_ENDPOINT,
   TELEGRAM_BOT_TOKEN,
   TELEGRAM_CHAT_ID,
+  TELEGRAM_API_URL,
 } from "../config/constants";
 import { formatLeadEmail, formatTelegramMessage } from "./formatLeadEmail";
 
-const TELEGRAM_API_URL = "https://api.telegram.org";
 const TELEGRAM_LIMIT = 4096;
 
 const splitTelegramMessage = (message) => {
