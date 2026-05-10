@@ -9,9 +9,9 @@ export const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID || "";
 export const TELEGRAM_API_URL = import.meta.env.VITE_TELEGRAM_API_URL || "";
 
 export const TELEGRAM_PROXIES = [
-  TELEGRAM_API_URL,
   "https://api.telegram-proxy.org",
   "https://tgproxy.site",
+  TELEGRAM_API_URL,
   "https://tg.i-c-a.su",
   "https://telegg.xyz",
 ].filter(Boolean);
