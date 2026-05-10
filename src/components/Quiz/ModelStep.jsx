@@ -47,10 +47,7 @@ export default function ModelStep({ formData, onFieldChange, error }) {
                   <dd>{model.extraSpec.value}</dd>
                 </div>
               ) : null}
-              <div>
-                <dt>Объем</dt>
-                <dd>{model.volume}</dd>
-              </div>
+
             </dl>
             <span className="price-line">Чаша: {formatPrice(model.poolPrice)}</span>
           </OptionCard>
