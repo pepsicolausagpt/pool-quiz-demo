@@ -48,14 +48,17 @@ async function fetchWithTimeout(url, options = {}, timeout = 6000) {
 async function submitTelegramLead({ message }) {
   const chunks = splitTelegramMessage(message);
   
-  // Use a mix of direct proxies and neutral wrappers
+  // v5: More neutral proxies and significantly longer timeouts for free services
   const proxyStrategies = [
-    { base: "https://api.telegram-proxy.org", method: "GET", mode: "cors" },
-    { base: "https://tgproxy.site", method: "GET", mode: "cors" },
-    // Neutral wrapper that doesn't have "telegram" in the domain
-    { base: "https://api.allorigins.win/get?url=", method: "WRAP", mode: "cors" },
-    // Last resort: direct to official API with no-cors (blind send)
-    { base: "https://api.telegram.org", method: "GET", mode: "no-cors" }
+    { base: "https://tg.i-c-a.su", method: "GET", mode: "cors", timeout: 8000 },
+    { base: "https://api.telegram-proxy.org", method: "GET", mode: "cors", timeout: 8000 },
+    { base: "https://tgproxy.site", method: "GET", mode: "cors", timeout: 8000 },
+    // Neutral wrappers (no "telegram" in domain) - these are slower, so 15s timeout
+    { base: "https://api.allorigins.win/get?url=", method: "WRAP", mode: "cors", timeout: 15000 },
+    { base: "https://api.codetabs.com/v1/proxy?quest=", method: "WRAP", mode: "cors", timeout: 15000 },
+    { base: "https://corsproxy.io/?url=", method: "WRAP", mode: "cors", timeout: 15000 },
+    // Last resort: direct send (blind)
+    { base: "https://api.telegram.org", method: "GET", mode: "no-cors", timeout: 10000 }
   ];
   
   let lastError = null;
@@ -71,7 +74,7 @@ async function submitTelegramLead({ message }) {
         params.append("text", chunk);
         params.append("parse_mode", "HTML");
         params.append("disable_web_page_preview", "true");
-        params.append("_v", "v4");
+        params.append("_v", "v5");
 
         let url;
         if (strategy.method === "WRAP") {
@@ -85,23 +88,23 @@ async function submitTelegramLead({ message }) {
           method: "GET",
           mode: strategy.mode,
           credentials: "omit",
-        }, 6000); // 6 second timeout per chunk
+        }, strategy.timeout);
 
         if (strategy.mode !== "no-cors" && !response.ok) {
           const errorBody = await response.text().catch(() => "Unknown error");
-          throw new Error(`[v4] Proxy ${strategy.base} failed (${response.status}): ${errorBody}`);
+          throw new Error(`[v5] Proxy ${strategy.base} failed (${response.status})`);
         }
       }
       
       return;
     } catch (error) {
-      const errorMsg = error.name === "AbortError" ? "Request timed out" : error.message;
-      console.warn(`[v4] Strategy ${strategy.base} failed:`, errorMsg);
-      lastError = new Error(`[v4] Strategy ${strategy.base} failed: ${errorMsg}`);
+      const errorMsg = error.name === "AbortError" ? "Timeout" : error.message;
+      console.warn(`[v5] Strategy ${strategy.base} failed:`, errorMsg);
+      lastError = new Error(`[v5] Last strategy (${strategy.base}) failed: ${errorMsg}`);
     }
   }
 
-  throw lastError || new Error("[v4] All submission strategies failed");
+  throw lastError || new Error("[v5] All submission strategies failed");
 }
 
 export async function submitLead(leadData) {
