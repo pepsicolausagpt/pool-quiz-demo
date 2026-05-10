@@ -40,17 +40,19 @@ async function submitTelegramLead({ message }) {
       const url = `${baseUrl}/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
       for (const chunk of chunks) {
+        // Use URLSearchParams to create a "Simple Request" (application/x-www-form-urlencoded)
+        // This avoids the CORS OPTIONS preflight request which often fails on mobile Safari.
+        const params = new URLSearchParams();
+        params.append("chat_id", TELEGRAM_CHAT_ID);
+        params.append("text", chunk);
+        params.append("parse_mode", "HTML");
+        params.append("disable_web_page_preview", "true");
+
         const response = await fetch(url, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text: chunk,
-            parse_mode: "HTML",
-            disable_web_page_preview: true,
-          }),
+          mode: "cors",
+          credentials: "omit",
+          body: params,
         });
 
         if (!response.ok) {
@@ -59,16 +61,13 @@ async function submitTelegramLead({ message }) {
         }
       }
       
-      // If we got here, all chunks were sent successfully via this proxy
       return;
     } catch (error) {
       console.warn(`Telegram delivery failed via ${proxyBase}:`, error.message);
       lastError = error;
-      // Continue to the next proxy in the list
     }
   }
 
-  // If we exhausted all proxies, throw the last error
   throw lastError || new Error("All Telegram proxies failed");
 }
 
