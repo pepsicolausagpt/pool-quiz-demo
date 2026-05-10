@@ -1,2 +1,2 @@
-Deployment trigger: 2026-05-10T17:10:00Z
-Enhanced visibility of the info block with a callout style.
+Deployment trigger: 2026-05-10T17:13:00Z
+Fixed logo overlap and phone number wrapping.
