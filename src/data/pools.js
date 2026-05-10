@@ -1,10 +1,9 @@
-const demoModel = (id, name, image, length, width, volume, poolPrice, extras = {}) => ({
+const demoModel = (id, name, image, length, width, poolPrice, extras = {}) => ({
   id,
   name,
   image,
   length,
   width,
-  volume,
   poolPrice: poolPrice + 15000,
   ...extras,
 });
@@ -47,37 +46,37 @@ const modelImages = {
   giotto: `${base}images/models/model-giotto.png`,
 };
 
-const standardModel = (id, name, length, width, volume, poolPrice) =>
-  demoModel(id, name, modelImages.standard, length, width, volume, poolPrice);
+const standardModel = (id, name, length, width, poolPrice) =>
+  demoModel(id, name, modelImages.standard, length, width, poolPrice);
 
-const classic1Model = (id, name, length, width, volume, poolPrice) =>
-  demoModel(id, name, modelImages.classic1, length, width, volume, poolPrice);
+const classic1Model = (id, name, length, width, poolPrice) =>
+  demoModel(id, name, modelImages.classic1, length, width, poolPrice);
 
-const classic2Model = (id, name, length, width, volume, poolPrice) =>
-  demoModel(id, name, modelImages.classic2, length, width, volume, poolPrice);
+const classic2Model = (id, name, length, width, poolPrice) =>
+  demoModel(id, name, modelImages.classic2, length, width, poolPrice);
 
-const romanoModel = (id, name, length, width, volume, poolPrice) =>
-  demoModel(id, name, modelImages.romano, length, width, volume, poolPrice);
+const romanoModel = (id, name, length, width, poolPrice) =>
+  demoModel(id, name, modelImages.romano, length, width, poolPrice);
 
-const spaModel = (id, name, length, width, volume, poolPrice) =>
-  demoModel(id, name, modelImages.spa, length, width, volume, poolPrice);
+const spaModel = (id, name, length, width, poolPrice) =>
+  demoModel(id, name, modelImages.spa, length, width, poolPrice);
 
-const roundSpaModel = (id, name, diameter, volume, poolPrice, image = modelImages.modenaFlorence) =>
-  demoModel(id, name, image, null, null, volume, poolPrice, { diameter });
+const roundSpaModel = (id, name, diameter, poolPrice, image = modelImages.modenaFlorence) =>
+  demoModel(id, name, image, null, null, poolPrice, { diameter });
 
-const leonardoSpaModel = (id, name, length, width, volume, poolPrice) =>
-  demoModel(id, name, modelImages.leonardoSpa, length, width, volume, poolPrice, {
+const leonardoSpaModel = (id, name, length, width, poolPrice) =>
+  demoModel(id, name, modelImages.leonardoSpa, length, width, poolPrice, {
     extraSpec: { label: "Купель", value: "2.9 x 2 x 1.0 м" },
   });
 
-const leonardoModel = (id, name, length, width, volume, poolPrice) =>
-  demoModel(id, name, modelImages.leonardo, length, width, volume, poolPrice);
+const leonardoModel = (id, name, length, width, poolPrice) =>
+  demoModel(id, name, modelImages.leonardo, length, width, poolPrice);
 
-const picassoModel = (id, name, length, width, volume, poolPrice) =>
-  demoModel(id, name, modelImages.picasso, length, width, volume, poolPrice);
+const picassoModel = (id, name, length, width, poolPrice) =>
+  demoModel(id, name, modelImages.picasso, length, width, poolPrice);
 
-const shapedModel = (id, name, length, width, volume, poolPrice, image) =>
-  demoModel(id, name, image, length, width, volume, poolPrice);
+const shapedModel = (id, name, length, width, poolPrice, image) =>
+  demoModel(id, name, image, length, width, poolPrice);
 
 export const pools = {
   standard: {
@@ -86,22 +85,22 @@ export const pools = {
     description: "Классическая прямоугольная форма для любого участка",
     image: poolImages.standard,
     models: [
-      standardModel("genoa-standard", "Генуя", "3.0 м", "2.0 м", "9 м³", 38000),
-      standardModel("rome-standard", "Рим", "4.0 м", "2.0 м", "12 м³", 56000),
-      standardModel("lazio-standard", "Лацио", "4.0 м", "2.5 м", "15 м³", 58000),
-      standardModel("sorrento-standard", "Сорренто", "4.0 м", "2.9 м", "17.4 м³", 60000),
-      standardModel("milan-standard", "Милан", "5.0 м", "2.0 м", "15 м³", 65000),
-      standardModel("palermo-standard", "Палермо", "5.0 м", "2.5 м", "18.75 м³", 75000),
-      standardModel("verona-standard", "Верона", "5.0 м", "2.9 м", "21.75 м³", 78000),
-      standardModel("rimini-standard", "Римини", "6.0 м", "2.5 м", "22.5 м³", 85000),
-      standardModel("ancona-standard", "Анкона", "6.0 м", "2.9 м", "26.1 м³", 90000),
-      standardModel("venice-standard", "Венеция", "6.5 м", "2.5 м", "24.3 м³", 98000),
-      standardModel("bologna-standard", "Болонья", "6.5 м", "2.9 м", "28.28 м³", 99000),
-      standardModel("turin-standard", "Турин", "7 м", "2.5 м", "26.25 м³", 100000),
-      standardModel("naples-standard", "Неаполь", "7 м", "2.9 м", "30.45 м³", 102000),
-      standardModel("pescara-standard", "Пескара", "8 м", "2.9 м", "39.6 м³", 150000),
-      standardModel("san-remo-standard", "Сан-Ремо", "9 м", "2.9 м", "44.55 м³", 170000),
-      standardModel("bari-standard", "Бари", "10 м", "2.9 м", "49.5 м³", 190000),
+      standardModel("genoa-standard", "Генуя", "3.0 м", "2.0 м", 38000),
+      standardModel("rome-standard", "Рим", "4.0 м", "2.0 м", 56000),
+      standardModel("lazio-standard", "Лацио", "4.0 м", "2.5 м", 58000),
+      standardModel("sorrento-standard", "Сорренто", "4.0 м", "2.9 м", 60000),
+      standardModel("milan-standard", "Милан", "5.0 м", "2.0 м", 65000),
+      standardModel("palermo-standard", "Палермо", "5.0 м", "2.5 м", 75000),
+      standardModel("verona-standard", "Верона", "5.0 м", "2.9 м", 78000),
+      standardModel("rimini-standard", "Римини", "6.0 м", "2.5 м", 85000),
+      standardModel("ancona-standard", "Анкона", "6.0 м", "2.9 м", 90000),
+      standardModel("venice-standard", "Венеция", "6.5 м", "2.5 м", 98000),
+      standardModel("bologna-standard", "Болонья", "6.5 м", "2.9 м", 99000),
+      standardModel("turin-standard", "Турин", "7 м", "2.5 м", 100000),
+      standardModel("naples-standard", "Неаполь", "7 м", "2.9 м", 102000),
+      standardModel("pescara-standard", "Пескара", "8 м", "2.9 м", 150000),
+      standardModel("san-remo-standard", "Сан-Ремо", "9 м", "2.9 м", 170000),
+      standardModel("bari-standard", "Бари", "10 м", "2.9 м", 190000),
     ],
   },
   classic_1: {
@@ -110,16 +109,16 @@ export const pools = {
     description: "Скругленный угол для комфорта и безопасности",
     image: poolImages.classic1,
     models: [
-      classic1Model("lazio-classic-1", "Лацио Classic 1", "4.95 м", "2.5 м", "15 м³", 95000),
-      classic1Model("sorrento-classic-1", "Сорренто Classic 1", "4.95 м", "2.9 м", "17.4 м³", 100000),
-      classic1Model("palermo-classic-1", "Палермо Classic 1", "5.95 м", "2.5 м", "18.75 м³", 110000),
-      classic1Model("verona-classic-1", "Верона Classic 1", "5.95 м", "2.9 м", "21.75 м³", 115000),
-      classic1Model("rimini-classic-1", "Римини Classic 1", "6.95 м", "2.5 м", "22.5 м³", 120000),
-      classic1Model("ancona-classic-1", "Анкона Classic 1", "6.95 м", "2.9 м", "26.1 м³", 130000),
-      classic1Model("naples-classic-1", "Неаполь Classic 1", "7.95 м", "2.9 м", "30.45 м³", 145000),
-      classic1Model("pescara-classic-1", "Пескара Classic 1", "8.95 м", "2.9 м", "39.6 м³", 180000),
-      classic1Model("san-remo-classic-1", "Сан-Ремо Classic 1", "9.95 м", "2.9 м", "44.55 м³", 205000),
-      classic1Model("bari-classic-1", "Бари Classic 1", "10.95 м", "2.9 м", "49.5 м³", 220000),
+      classic1Model("lazio-classic-1", "Лацио Classic 1", "4.95 м", "2.5 м", 95000),
+      classic1Model("sorrento-classic-1", "Сорренто Classic 1", "4.95 м", "2.9 м", 100000),
+      classic1Model("palermo-classic-1", "Палермо Classic 1", "5.95 м", "2.5 м", 110000),
+      classic1Model("verona-classic-1", "Верона Classic 1", "5.95 м", "2.9 м", 115000),
+      classic1Model("rimini-classic-1", "Римини Classic 1", "6.95 м", "2.5 м", 120000),
+      classic1Model("ancona-classic-1", "Анкона Classic 1", "6.95 м", "2.9 м", 130000),
+      classic1Model("naples-classic-1", "Неаполь Classic 1", "7.95 м", "2.9 м", 145000),
+      classic1Model("pescara-classic-1", "Пескара Classic 1", "8.95 м", "2.9 м", 180000),
+      classic1Model("san-remo-classic-1", "Сан-Ремо Classic 1", "9.95 м", "2.9 м", 205000),
+      classic1Model("bari-classic-1", "Бари Classic 1", "10.95 м", "2.9 м", 220000),
     ],
   },
   classic_2: {
@@ -128,16 +127,16 @@ export const pools = {
     description: "Прямые линии и удобные ступени",
     image: poolImages.classic2,
     models: [
-      classic2Model("lazio-classic-2", "Лацио Classic 2", "4.95 м", "2.5 м", "15 м³", 95000),
-      classic2Model("sorrento-classic-2", "Сорренто Classic 2", "4.95 м", "2.9 м", "17.4 м³", 100000),
-      classic2Model("palermo-classic-2", "Палермо Classic 2", "5.95 м", "2.5 м", "18.75 м³", 110000),
-      classic2Model("verona-classic-2", "Верона Classic 2", "5.95 м", "2.9 м", "21.75 м³", 115000),
-      classic2Model("rimini-classic-2", "Римини Classic 2", "6.95 м", "2.5 м", "22.5 м³", 120000),
-      classic2Model("ancona-classic-2", "Анкона Classic 2", "6.95 м", "2.9 м", "26.1 м³", 130000),
-      classic2Model("naples-classic-2", "Неаполь Classic 2", "7.95 м", "2.9 м", "30.45 м³", 145000),
-      classic2Model("pescara-classic-2", "Пескара Classic 2", "8.95 м", "2.9 м", "39.6 м³", 180000),
-      classic2Model("san-remo-classic-2", "Сан-Ремо Classic 2", "9.95 м", "2.9 м", "44.55 м³", 205000),
-      classic2Model("bari-classic-2", "Бари Classic 2", "10.95 м", "2.9 м", "49.5 м³", 220000),
+      classic2Model("lazio-classic-2", "Лацио Classic 2", "4.95 м", "2.5 м", 95000),
+      classic2Model("sorrento-classic-2", "Сорренто Classic 2", "4.95 м", "2.9 м", 100000),
+      classic2Model("palermo-classic-2", "Палермо Classic 2", "5.95 м", "2.5 м", 110000),
+      classic2Model("verona-classic-2", "Верона Classic 2", "5.95 м", "2.9 м", 115000),
+      classic2Model("rimini-classic-2", "Римини Classic 2", "6.95 м", "2.5 м", 120000),
+      classic2Model("ancona-classic-2", "Анкона Classic 2", "6.95 м", "2.9 м", 130000),
+      classic2Model("naples-classic-2", "Неаполь Classic 2", "7.95 м", "2.9 м", 145000),
+      classic2Model("pescara-classic-2", "Пескара Classic 2", "8.95 м", "2.9 м", 180000),
+      classic2Model("san-remo-classic-2", "Сан-Ремо Classic 2", "9.95 м", "2.9 м", 205000),
+      classic2Model("bari-classic-2", "Бари Classic 2", "10.95 м", "2.9 м", 220000),
     ],
   },
   romano: {
@@ -146,19 +145,19 @@ export const pools = {
     description: "Римская лестница и зона отдыха",
     image: poolImages.romano,
     models: [
-      romanoModel("lazio-romano", "Лацио Romano", "4.0 м", "2.5 м", "15 м³", 90000),
-      romanoModel("sorrento-romano", "Сорренто Romano", "4.0 м", "2.9 м", "17.4 м³", 95000),
-      romanoModel("palermo-romano", "Палермо Romano", "5.0 м", "2.5 м", "18.75 м³", 105000),
-      romanoModel("verona-romano", "Верона Romano", "5.0 м", "2.9 м", "21.75 м³", 110000),
-      romanoModel("rimini-romano", "Римини Romano", "6.0 м", "2.5 м", "22.5 м³", 115000),
-      romanoModel("ancona-romano", "Анкона Romano", "6.0 м", "2.9 м", "26.1 м³", 125000),
-      romanoModel("venice-romano", "Венеция Romano", "6.5 м", "2.5 м", "24.3 м³", 125000),
-      romanoModel("bologna-romano", "Болонья Romano", "6.5 м", "2.9 м", "28.28 м³", 135000),
-      romanoModel("turin-romano", "Турин Romano", "7 м", "2.5 м", "26.25 м³", 135000),
-      romanoModel("naples-romano", "Неаполь Romano", "7 м", "2.9 м", "30.45 м³", 140000),
-      romanoModel("pescara-romano", "Пескара Romano", "8 м", "2.9 м", "39.6 м³", 175000),
-      romanoModel("san-remo-romano", "Сан-Ремо Romano", "9 м", "2.9 м", "44.55 м³", 200000),
-      romanoModel("bari-romano", "Бари Romano", "10 м", "2.9 м", "49.5 м³", 215000),
+      romanoModel("lazio-romano", "Лацио Romano", "4.0 м", "2.5 м", 90000),
+      romanoModel("sorrento-romano", "Сорренто Romano", "4.0 м", "2.9 м", 95000),
+      romanoModel("palermo-romano", "Палермо Romano", "5.0 м", "2.5 м", 105000),
+      romanoModel("verona-romano", "Верона Romano", "5.0 м", "2.9 м", 110000),
+      romanoModel("rimini-romano", "Римини Romano", "6.0 м", "2.5 м", 115000),
+      romanoModel("ancona-romano", "Анкона Romano", "6.0 м", "2.9 м", 125000),
+      romanoModel("venice-romano", "Венеция Romano", "6.5 м", "2.5 м", 125000),
+      romanoModel("bologna-romano", "Болонья Romano", "6.5 м", "2.9 м", 135000),
+      romanoModel("turin-romano", "Турин Romano", "7 м", "2.5 м", 135000),
+      romanoModel("naples-romano", "Неаполь Romano", "7 м", "2.9 м", 140000),
+      romanoModel("pescara-romano", "Пескара Romano", "8 м", "2.9 м", 175000),
+      romanoModel("san-remo-romano", "Сан-Ремо Romano", "9 м", "2.9 м", 200000),
+      romanoModel("bari-romano", "Бари Romano", "10 м", "2.9 м", 215000),
     ],
   },
   spa_round: {
@@ -167,12 +166,12 @@ export const pools = {
     description: "Компактные решения для отдыха и гидромассажа",
     image: poolImages.spaRound,
     models: [
-      spaModel("verona-spa", "Верона Spa", "5.0 м", "2.9 м", "21.75 м³", 145000),
-      spaModel("ancona-spa", "Анкона Spa", "6.0 м", "2.9 м", "26.1 м³", 165000),
-      spaModel("naples-spa", "Неаполь Spa", "7 м", "2.9 м", "30.45 м³", 185000),
-      roundSpaModel("modena-round", "Модена", "2.5 м", "7.36 м³", 50000),
-      roundSpaModel("florence-round", "Флоренция", "2.9 м", "9.91 м³", 55000),
-      roundSpaModel("bergamo-round", "Бергамо", "2.9 м", "9.91 м³", 65000, modelImages.bergamo),
+      spaModel("verona-spa", "Верона Spa", "5.0 м", "2.9 м", 145000),
+      spaModel("ancona-spa", "Анкона Spa", "6.0 м", "2.9 м", 165000),
+      spaModel("naples-spa", "Неаполь Spa", "7 м", "2.9 м", 185000),
+      roundSpaModel("modena-round", "Модена", "2.5 м", 50000),
+      roundSpaModel("florence-round", "Флоренция", "2.9 м", 55000),
+      roundSpaModel("bergamo-round", "Бергамо", "2.9 м", 65000, modelImages.bergamo),
     ],
   },
   leonardo_spa: {
@@ -181,9 +180,9 @@ export const pools = {
     description: "Spa-зона и плавная форма чаши",
     image: poolImages.leonardoSpa,
     models: [
-      leonardoSpaModel("verona-leonardo-spa", "Верона Leonardo Spa", "5.0 м", "2.9 м", "21.75 м³", 170000, null),
-      leonardoSpaModel("ancona-leonardo-spa", "Анкона Leonardo Spa", "6.0 м", "2.9 м", "26.1 м³", 180000, null),
-      leonardoSpaModel("naples-leonardo-spa", "Неаполь Leonardo Spa", "7 м", "2.9 м", "30.45 м³", 205000, null),
+      leonardoSpaModel("verona-leonardo-spa", "Верона Leonardo Spa", "5.0 м", "2.9 м", 170000, null),
+      leonardoSpaModel("ancona-leonardo-spa", "Анкона Leonardo Spa", "6.0 м", "2.9 м", 180000, null),
+      leonardoSpaModel("naples-leonardo-spa", "Неаполь Leonardo Spa", "7 м", "2.9 м", 205000, null),
     ],
   },
   leonardo: {
@@ -192,12 +191,12 @@ export const pools = {
     description: "Угловые ступени и просторная зона плавания",
     image: poolImages.leonardo,
     models: [
-      leonardoModel("verona-leonardo", "Верона Leonardo", "5.0 м", "2.9 м", "21.75 м³", 120000),
-      leonardoModel("ancona-leonardo", "Анкона Leonardo", "6.0 м", "2.9 м", "26.1 м³", 130000),
-      leonardoModel("naples-leonardo", "Неаполь Leonardo", "7 м", "2.9 м", "30.45 м³", 145000),
-      leonardoModel("pescara-leonardo", "Пескара Leonardo", "8 м", "2.9 м", "39.6 м³", 180000),
-      leonardoModel("san-remo-leonardo", "Сан-Ремо Leonardo", "9 м", "2.9 м", "44.55 м³", 195000),
-      leonardoModel("bari-leonardo", "Бари Leonardo", "10 м", "2.9 м", "49.5 м³", 210000),
+      leonardoModel("verona-leonardo", "Верона Leonardo", "5.0 м", "2.9 м", 120000),
+      leonardoModel("ancona-leonardo", "Анкона Leonardo", "6.0 м", "2.9 м", 130000),
+      leonardoModel("naples-leonardo", "Неаполь Leonardo", "7 м", "2.9 м", 145000),
+      leonardoModel("pescara-leonardo", "Пескара Leonardo", "8 м", "2.9 м", 180000),
+      leonardoModel("san-remo-leonardo", "Сан-Ремо Leonardo", "9 м", "2.9 м", 195000),
+      leonardoModel("bari-leonardo", "Бари Leonardo", "10 м", "2.9 м", 210000),
     ],
   },
   picasso: {
@@ -206,16 +205,16 @@ export const pools = {
     description: "Выразительная форма для участков с характером",
     image: poolImages.picasso,
     models: [
-      picassoModel("lazio-picasso", "Лацио Picasso", "4.0 м", "2.5 м", "15 м³", 95000),
-      picassoModel("sorrento-picasso", "Сорренто Picasso", "4.0 м", "2.9 м", "17.4 м³", 105000),
-      picassoModel("palermo-picasso", "Палермо Picasso", "5.0 м", "2.5 м", "18.75 м³", 110000),
-      picassoModel("verona-picasso", "Верона Picasso", "5.0 м", "2.9 м", "21.75 м³", 115000),
-      picassoModel("rimini-picasso", "Римини Picasso", "6.0 м", "2.5 м", "22.5 м³", 120000),
-      picassoModel("ancona-picasso", "Анкона Picasso", "6.0 м", "2.9 м", "26.1 м³", 125000),
-      picassoModel("venice-picasso", "Венеция Picasso", "6.5 м", "2.5 м", "24.3 м³", 135000),
-      picassoModel("bologna-picasso", "Болонья Picasso", "6.5 м", "2.9 м", "28.28 м³", 140000),
-      picassoModel("turin-picasso", "Турин Picasso", "7 м", "2.5 м", "26.25 м³", 145000),
-      picassoModel("naples-picasso", "Неаполь Picasso", "7 м", "2.9 м", "30.45 м³", 150000),
+      picassoModel("lazio-picasso", "Лацио Picasso", "4.0 м", "2.5 м", 95000),
+      picassoModel("sorrento-picasso", "Сорренто Picasso", "4.0 м", "2.9 м", 105000),
+      picassoModel("palermo-picasso", "Палермо Picasso", "5.0 м", "2.5 м", 110000),
+      picassoModel("verona-picasso", "Верона Picasso", "5.0 м", "2.9 м", 115000),
+      picassoModel("rimini-picasso", "Римини Picasso", "6.0 м", "2.5 м", 120000),
+      picassoModel("ancona-picasso", "Анкона Picasso", "6.0 м", "2.9 м", 125000),
+      picassoModel("venice-picasso", "Венеция Picasso", "6.5 м", "2.5 м", 135000),
+      picassoModel("bologna-picasso", "Болонья Picasso", "6.5 м", "2.9 м", 140000),
+      picassoModel("turin-picasso", "Турин Picasso", "7 м", "2.5 м", 145000),
+      picassoModel("naples-picasso", "Неаполь Picasso", "7 м", "2.9 м", 150000),
     ],
   },
   dali: {
@@ -224,12 +223,12 @@ export const pools = {
     description: "Элегантная овальная форма для гармонии и стиля",
     image: poolImages.dali,
     models: [
-      shapedModel("verona-dali", "Верона Dali", "5.0 м", "2.9 м", "21.75 м³", 125000, modelImages.dali),
-      shapedModel("ancona-dali", "Анкона Dali", "6.0 м", "2.9 м", "26.1 м³", 130000, modelImages.dali),
-      shapedModel("naples-dali", "Неаполь Dali", "7 м", "2.9 м", "30.45 м³", 155000, modelImages.dali),
-      shapedModel("pescara-dali", "Пескара Dali", "8 м", "2.9 м", "39.6 м³", 215000, modelImages.dali),
-      shapedModel("san-remo-dali", "Сан-Ремо Dali", "9 м", "2.9 м", "44.55 м³", 220000, modelImages.dali),
-      shapedModel("bari-dali", "Бари Dali", "10 м", "2.9 м", "49.5 м³", 225000, modelImages.dali),
+      shapedModel("verona-dali", "Верона Dali", "5.0 м", "2.9 м", 125000, modelImages.dali),
+      shapedModel("ancona-dali", "Анкона Dali", "6.0 м", "2.9 м", 130000, modelImages.dali),
+      shapedModel("naples-dali", "Неаполь Dali", "7 м", "2.9 м", 155000, modelImages.dali),
+      shapedModel("pescara-dali", "Пескара Dali", "8 м", "2.9 м", 215000, modelImages.dali),
+      shapedModel("san-remo-dali", "Сан-Ремо Dali", "9 м", "2.9 м", 220000, modelImages.dali),
+      shapedModel("bari-dali", "Бари Dali", "10 м", "2.9 м", 225000, modelImages.dali),
     ],
   },
   gaudi: {
@@ -238,12 +237,12 @@ export const pools = {
     description: "Плавная геометрия и увеличенная зона отдыха",
     image: poolImages.gaudi,
     models: [
-      shapedModel("verona-gaudi", "Верона Gaudi", "5.0 м", "2.9 м", "21.75 м³", 125000, modelImages.gaudi),
-      shapedModel("ancona-gaudi", "Анкона Gaudi", "6.0 м", "2.9 м", "26.1 м³", 130000, modelImages.gaudi),
-      shapedModel("naples-gaudi", "Неаполь Gaudi", "7 м", "2.9 м", "30.45 м³", 150000, modelImages.gaudi),
-      shapedModel("pescara-gaudi", "Пескара Gaudi", "8 м", "2.9 м", "39.6 м³", 180000, modelImages.gaudi),
-      shapedModel("san-remo-gaudi", "Сан-Ремо Gaudi", "9 м", "2.9 м", "44.55 м³", 205000, modelImages.gaudi),
-      shapedModel("bari-gaudi", "Бари Gaudi", "10 м", "2.9 м", "49.5 м³", 220000, modelImages.gaudi),
+      shapedModel("verona-gaudi", "Верона Gaudi", "5.0 м", "2.9 м", 125000, modelImages.gaudi),
+      shapedModel("ancona-gaudi", "Анкона Gaudi", "6.0 м", "2.9 м", 130000, modelImages.gaudi),
+      shapedModel("naples-gaudi", "Неаполь Gaudi", "7 м", "2.9 м", 150000, modelImages.gaudi),
+      shapedModel("pescara-gaudi", "Пескара Gaudi", "8 м", "2.9 м", 180000, modelImages.gaudi),
+      shapedModel("san-remo-gaudi", "Сан-Ремо Gaudi", "9 м", "2.9 м", 205000, modelImages.gaudi),
+      shapedModel("bari-gaudi", "Бари Gaudi", "10 м", "2.9 м", 220000, modelImages.gaudi),
     ],
   },
   monet: {
@@ -252,11 +251,11 @@ export const pools = {
     description: "Компактная овальная форма для небольших участков",
     image: poolImages.monet,
     models: [
-      shapedModel("ancona-monet", "Анкона Monet", "6.0 м", "2.9 м", "26.1 м³", 140000, modelImages.monet),
-      shapedModel("naples-monet", "Неаполь Monet", "7 м", "2.9 м", "30.45 м³", 155000, modelImages.monet),
-      shapedModel("pescara-monet", "Пескара Monet", "8 м", "2.9 м", "39.6 м³", 165000, modelImages.monet),
-      shapedModel("san-remo-monet", "Сан-Ремо Monet", "9 м", "2.9 м", "44.55 м³", 210000, modelImages.monet),
-      shapedModel("bari-monet", "Бари Monet", "10 м", "2.9 м", "49.5 м³", 225000, modelImages.monet),
+      shapedModel("ancona-monet", "Анкона Monet", "6.0 м", "2.9 м", 140000, modelImages.monet),
+      shapedModel("naples-monet", "Неаполь Monet", "7 м", "2.9 м", 155000, modelImages.monet),
+      shapedModel("pescara-monet", "Пескара Monet", "8 м", "2.9 м", 165000, modelImages.monet),
+      shapedModel("san-remo-monet", "Сан-Ремо Monet", "9 м", "2.9 м", 210000, modelImages.monet),
+      shapedModel("bari-monet", "Бари Monet", "10 м", "2.9 м", 225000, modelImages.monet),
     ],
   },
   giotto: {
@@ -265,11 +264,11 @@ export const pools = {
     description: "Большая семейная чаша с мягкими линиями",
     image: poolImages.giotto,
     models: [
-      shapedModel("ancona-giotto", "Анкона Giotto", "6.0 м", "2.9 м", "26.1 м³", 130000, modelImages.giotto),
-      shapedModel("naples-giotto", "Неаполь Giotto", "7 м", "2.9 м", "30.45 м³", 150000, modelImages.giotto),
-      shapedModel("pescara-giotto", "Пескара Giotto", "8 м", "2.9 м", "39.6 м³", 180000, modelImages.giotto),
-      shapedModel("san-remo-giotto", "Сан-Ремо Giotto", "9 м", "2.9 м", "44.55 м³", 205000, modelImages.giotto),
-      shapedModel("bari-giotto", "Бари Giotto", "10 м", "2.9 м", "49.5 м³", 220000, modelImages.giotto),
+      shapedModel("ancona-giotto", "Анкона Giotto", "6.0 м", "2.9 м", 130000, modelImages.giotto),
+      shapedModel("naples-giotto", "Неаполь Giotto", "7 м", "2.9 м", 150000, modelImages.giotto),
+      shapedModel("pescara-giotto", "Пескара Giotto", "8 м", "2.9 м", 180000, modelImages.giotto),
+      shapedModel("san-remo-giotto", "Сан-Ремо Giotto", "9 м", "2.9 м", 205000, modelImages.giotto),
+      shapedModel("bari-giotto", "Бари Giotto", "10 м", "2.9 м", 220000, modelImages.giotto),
     ],
   },
 };
