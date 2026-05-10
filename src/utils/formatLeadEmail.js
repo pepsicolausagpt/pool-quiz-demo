@@ -28,8 +28,8 @@ const formatModelSize = (model) => {
   }
 
   const base = model.diameter
-    ? `Диаметр: ${formatValue(model.diameter)}, глубина: ${formatValue(model.depth)}`
-    : `${formatValue(model.length)} x ${formatValue(model.width)} x ${formatValue(model.depth)}`;
+    ? `Диаметр: ${formatValue(model.diameter)}`
+    : `${formatValue(model.length)} x ${formatValue(model.width)}`;
 
   return model.extraSpec ? `${base}, ${model.extraSpec.label}: ${model.extraSpec.value}` : base;
 };
@@ -72,7 +72,6 @@ export function formatTelegramMessage(leadData) {
       "<i>Тип: Индивидуальный / более 7м</i>",
       `Ширина: ${formatValue(leadData.customPool.width)} м`,
       `Длина: ${formatValue(leadData.customPool.length)} м`,
-      `Глубина: ${formatValue(leadData.customPool.depth)} м`,
       `Пленка: ${escapeHtml(formatValue(leadData.customPool.linerType))}`,
     );
   } else {
@@ -127,7 +126,6 @@ export function formatLeadEmail(leadData) {
           "Тип расчета: Индивидуальный бассейн / более 7 метров",
           `Ширина: ${formatValue(leadData.customPool.width)} м`,
           `Длина: ${formatValue(leadData.customPool.length)} м`,
-          `Глубина: ${formatValue(leadData.customPool.depth)} м`,
           `Тип пленки: ${formatValue(leadData.customPool.linerType)}`,
         ]
       : [
