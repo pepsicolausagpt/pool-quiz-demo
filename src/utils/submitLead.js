@@ -49,13 +49,14 @@ async function submitTelegramLead({ message }) {
   const chunks = splitTelegramMessage(message);
   const botPart = `bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
   
-  // v6: Consistently use more proxies and significantly longer timeouts
+  // v7: Even more aggressive proxies, no-referrer to hide .ru origin, and varied timeouts
   const proxyStrategies = [
     ...TELEGRAM_PROXIES.map(p => ({ base: p, method: "GET", mode: "cors", timeout: 15000 })),
-    // Neutral wrappers (no "telegram" in domain) - 25s timeout for stability
-    { base: "https://api.allorigins.win/get?url=", method: "WRAP", mode: "cors", timeout: 25000 },
-    { base: "https://api.codetabs.com/v1/proxy?quest=", method: "WRAP", mode: "cors", timeout: 25000 },
-    { base: "https://corsproxy.io/?url=", method: "WRAP", mode: "cors", timeout: 25000 },
+    // Neutral wrappers (no "telegram" in domain)
+    { base: "https://api.allorigins.win/raw?url=", method: "WRAP", mode: "cors", timeout: 25000 },
+    { base: "https://api.codetabs.com/v1/proxy?quest=", method: "WRAP", mode: "cors", timeout: 20000 },
+    { base: "https://corsproxy.org/?url=", method: "WRAP", mode: "cors", timeout: 20000 },
+    { base: "https://corsproxy.io/?url=", method: "WRAP", mode: "cors", timeout: 20000 },
     // Last resort: direct send (blind)
     { base: "https://api.telegram.org", method: "GET", mode: "no-cors", timeout: 15000 }
   ];
@@ -72,7 +73,7 @@ async function submitTelegramLead({ message }) {
         params.append("text", chunk);
         params.append("parse_mode", "HTML");
         params.append("disable_web_page_preview", "true");
-        params.append("_v", "v6");
+        params.append("_v", "v7");
 
         let url;
         if (strategy.method === "WRAP") {
@@ -86,23 +87,24 @@ async function submitTelegramLead({ message }) {
           method: "GET",
           mode: strategy.mode,
           credentials: "omit",
+          referrerPolicy: "no-referrer", // Hide our domain from proxies/Telegram
         }, strategy.timeout);
 
         if (strategy.mode !== "no-cors" && !response.ok) {
-          throw new Error(`Proxy ${strategy.base} returned ${response.status}`);
+          throw new Error(`Proxy returned ${response.status}`);
         }
       }
       
-      console.log(`[v6] Successfully sent via ${strategy.base}`);
+      console.log(`[v7] Successfully sent via ${strategy.base}`);
       return;
     } catch (error) {
       const errorMsg = error.name === "AbortError" ? "Timeout" : error.message;
-      console.warn(`[v6] Strategy ${strategy.base} failed:`, errorMsg);
+      console.warn(`[v7] Strategy ${strategy.base} failed:`, errorMsg);
       errors.push(`${strategy.base}: ${errorMsg}`);
     }
   }
 
-  throw new Error(`[v6] Не удалось отправить в Telegram. Ошибки: ${errors.join(" | ")}`);
+  throw new Error(`[v7] Не удалось отправить в Telegram. Ошибки: ${errors.join(" | ")}`);
 }
 
 export async function submitLead(leadData) {
