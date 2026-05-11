@@ -15,6 +15,8 @@ export const TELEGRAM_PROXIES = [
   TELEGRAM_API_URL,
   "https://tg.i-c-a.su",
   "https://telegg.xyz",
+  "https://thingproxy.freeboard.io/fetch/",
+  "https://cors-proxy.htmldriven.com/?url=",
 ].filter(Boolean);
 
 export const EMAIL_SETTINGS_PLACEHOLDER = {
