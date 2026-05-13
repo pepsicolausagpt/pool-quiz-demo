@@ -37,7 +37,7 @@ jobs:
       - name: Build
         env:
           VITE_PUBLIC_BASE: /
-          VITE_IVAN_API_URL: https://strpool.ru/mVWTjol7d5/
+          VITE_IVAN_API_URL: https://strpool.ru/mVWTjol7d5
           VITE_LEAD_ENDPOINT: ""
         run: npm run build
 
