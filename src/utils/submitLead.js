@@ -18,7 +18,7 @@ async function submitToIvanApi({ header, msg }) {
 
   console.info("Sending lead to Ivan API...", { url: IVAN_API_URL, header });
 
-  const response = await fetch(IVAN_API_URL.replace(/\/$/, ""), {
+  const response = await fetch(IVAN_API_URL.endsWith("/") ? IVAN_API_URL : `${IVAN_API_URL}/`, {
     method: "POST",
     body: params,
   });
