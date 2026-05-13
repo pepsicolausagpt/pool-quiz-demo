@@ -10,24 +10,31 @@ async function submitToIvanApi({ header, msg }) {
     throw new Error("API URL не настроен");
   }
 
-  // Используем FormData для отправки параметров header и msg
-  const formData = new FormData();
-  formData.append("header", header);
-  formData.append("msg", msg);
+  // Используем URLSearchParams для отправки параметров в формате application/x-www-form-urlencoded
+  // Это часто более совместимо с простыми PHP-скриптами и обходит некоторые проблемы CORS
+  const params = new URLSearchParams();
+  params.append("header", header);
+  params.append("msg", msg);
+
+  console.info("Sending lead to Ivan API...", { url: IVAN_API_URL, header });
 
   const response = await fetch(IVAN_API_URL, {
     method: "POST",
-    body: formData,
-    // Режим cors важен для запросов с одного домена на другой
+    body: params,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
     mode: "cors",
   });
 
   if (!response.ok) {
-    throw new Error(`Ошибка сервера: ${response.status}`);
+    throw new Error(`Ошибка сервера: ${response.status} ${response.statusText}`);
   }
 
   const resultText = await response.text();
-  if (resultText.includes("ERROR")) {
+  console.info("Ivan API response:", resultText);
+
+  if (resultText.trim().includes("ERROR")) {
     throw new Error(`API вернул ошибку: ${resultText}`);
   }
 
