@@ -2,7 +2,7 @@ import "dotenv/config";
 import express from "express";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { sendTelegramMessage } from "./telegramClient.js";
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,18 +15,9 @@ const emailPattern = /^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9-]+(?:\.[A-Za-
 
 app.use(express.json({ limit: "1mb" }));
 
-const telegramRequiredEnv = ["TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"];
-
-const hasTelegramSettings = () => telegramRequiredEnv.every((key) => process.env[key]);
-
-const getTelegramSettings = () => ({
-  botToken: process.env.TELEGRAM_BOT_TOKEN,
-  chatId: process.env.TELEGRAM_CHAT_ID,
-});
-
 app.post("/api/lead", async (request, response) => {
   try {
-    const { subject, message, telegramMessage, email, phone } = request.body || {};
+    const { subject, message, email, phone } = request.body || {};
 
     if (!message || !phone || !email) {
       response.status(400).json({ ok: false, error: "Missing required lead fields" });
@@ -38,24 +29,17 @@ app.post("/api/lead", async (request, response) => {
       return;
     }
 
-    const emailSubject = subject || "Новая заявка на расчет бассейна";
-    const text = telegramMessage || String(message);
-
-    if (!hasTelegramSettings()) {
-      throw new Error("Missing Telegram settings: configure TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID");
-    }
-
-    await sendTelegramMessage({
-      ...getTelegramSettings(),
-      text: `${emailSubject}\n\n${text}`,
-    });
-
-    response.json({ ok: true });
+    console.info("Lead received on server (TG disabled):", { subject, email, phone });
+    
+    // Server-side delivery is currently disabled in favor of client-side Ivan API gateway.
+    // If needed, SMTP or other logic can be added here.
+    
+    response.json({ ok: true, note: "Server received lead but delivery is handled by client-side API" });
   } catch (error) {
-    console.error("Lead delivery failed", error);
+    console.error("Lead processing failed", error);
     response.status(500).json({
       ok: false,
-      error: "Не удалось отправить заявку. Попробуйте еще раз или свяжитесь по телефону.",
+      error: "Internal server error",
     });
   }
 });
