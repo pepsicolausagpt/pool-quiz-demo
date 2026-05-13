@@ -18,13 +18,9 @@ async function submitToIvanApi({ header, msg }) {
 
   console.info("Sending lead to Ivan API...", { url: IVAN_API_URL, header });
 
-  const response = await fetch(IVAN_API_URL, {
+  const response = await fetch(IVAN_API_URL.replace(/\/$/, ""), {
     method: "POST",
     body: params,
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    mode: "cors",
   });
 
   if (!response.ok) {
