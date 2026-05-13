@@ -34,68 +34,7 @@ const formatModelSize = (model) => {
   return model.extraSpec ? `${base}, ${model.extraSpec.label}: ${model.extraSpec.value}` : base;
 };
 
-const escapeHtml = (unsafe) => {
-  if (typeof unsafe !== "string") return unsafe;
-  return unsafe
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-};
 
-export function formatTelegramMessage(leadData) {
-  const contact = leadData.contact;
-  const formatDateLocal = (isoDate) =>
-    new Intl.DateTimeFormat("ru-RU", {
-      dateStyle: "medium",
-      timeStyle: "short",
-    }).format(new Date(isoDate));
-
-  const formatPriceLocal = (value) =>
-    value || value === 0 ? `${Number(value).toLocaleString("ru-RU")} руб.` : "Не указано";
-
-  const rows = [
-    "<b>🚀 Новая заявка на расчет бассейна</b>",
-    "",
-    "<b>👤 Клиент:</b>",
-    `Имя: ${escapeHtml(formatValue(contact.fullName))}`,
-    `📍 Город: ${escapeHtml(formatValue(contact.deliveryCity))}`,
-    `📞 Тел: <code>${escapeHtml(formatValue(contact.phone))}</code>`,
-    `📧 Email: ${escapeHtml(formatValue(contact.email))}`,
-    "",
-    "<b>🏊 Параметры бассейна:</b>",
-  ];
-
-  rows.push(
-    `<i>Тип: Готовая модель (${escapeHtml(pools[leadData.poolType]?.title || leadData.poolType)})</i>`,
-    `Модель: <b>${escapeHtml(formatValue(leadData.selectedModel?.name))}</b>`,
-    `Габариты: ${escapeHtml(formatModelSize(leadData.selectedModel))}`,
-    `Цена чаши: ${formatPriceLocal(leadData.selectedModel?.poolPrice)}`,
-  );
-
-  rows.push(
-    "",
-    "<b>⚙️ Оборудование и опции:</b>",
-    `Локация: ${escapeHtml(formatValue(leadData.location))}`,
-
-    `Элементы: ${escapeHtml(formatValue(leadData.equipmentItems))}`,
-    `Дезинфекция: ${escapeHtml(formatValue(leadData.waterDisinfection))}`,
-    `Противоток: ${escapeHtml(formatValue(leadData.counterflow))}`,
-    `Нагрев: ${escapeHtml(formatValue(leadData.waterHeating))}`,
-    "",
-    "<b>💰 Сроки и бюджет:</b>",
-    `Срок: ${escapeHtml(formatValue(leadData.implementationTime))}`,
-    `Бюджет: <b>${escapeHtml(formatValue(leadData.budgetLimit))}</b>`,
-    `Схема: ${escapeHtml(formatValue(leadData.implementationScheme))}`,
-    `Комментарий: <i>${escapeHtml(formatValue(leadData.comment))}</i>`,
-    "",
-    `📅 Дата: ${formatDateLocal(leadData.createdAt)}`,
-    `🔗 Источник: ${escapeHtml(leadData.source)}`,
-  );
-
-  return rows.join("\n");
-}
 
 export function formatLeadEmail(leadData) {
   const contact = leadData.contact;
